@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="bn" translate="no" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>সৈনিক-মেস রেশন প্রদান</title>
+<meta name="theme-color" content="#2f6b4f">
+<style>
+:root{color-scheme:light;--bg:#f5f6fa;--card:#fff;--tx:#1b1f2a;--mu:#6b7280;--bd:#c9ced9;--ac:#2f6b4f;--ac2:#e4f1ea;--red:#c0201a;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Bengali","Nirmala UI",Arial,sans-serif;padding:14px 10px 70px}
+h1{font-size:22px;margin:2px 4px 8px;text-align:center}
+.back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
+.sub{color:var(--mu);font-size:12px;text-align:center;margin-bottom:10px}
+.foot{text-align:center;color:var(--mu);font-size:12px;margin-top:22px}
+.ttl{display:flex;gap:8px;justify-content:center;align-items:center;margin:2px 0 10px;font-weight:700}
+.ttl select{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 6px}
+.ttl input{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 10px;width:170px;text-align:center}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+table{border-collapse:collapse;min-width:100%}
+th,td{border:1px solid var(--bd);padding:0;text-align:center;white-space:nowrap}
+th{background:var(--ac2);font-size:13px;padding:6px 4px}
+th input{font:inherit;font-weight:700;text-align:center;background:transparent;color:var(--tx);border:0;width:96px;font-size:16px;padding:4px 2px}
+th small{display:block;color:var(--mu);font-weight:400;font-size:11px}
+td.l,th.l{position:sticky;left:0;z-index:2;background:var(--card);min-width:150px;max-width:150px;text-align:left;padding:2px 4px}
+th.l{background:var(--ac2);padding:6px;font-size:13px}
+td.l input{width:100%;border:0;background:transparent;color:var(--tx);font:inherit;font-size:13px;font-weight:600;padding:8px 2px}
+td input.cell{width:96px;border:0;background:transparent;color:var(--red);font:inherit;font-size:15px;text-align:center;padding:9px 4px}
+input:focus{outline:2px solid var(--ac);background:var(--ac2)}
+td.v{color:var(--red);font-size:15px;padding:9px 6px;font-weight:700}
+tr.t td,tr.t td.l{background:var(--ac2)}
+td.neg{color:var(--bad)}
+.gap td{height:14px}
+.del{display:block;margin:2px auto 0;border:0;background:none;color:var(--bad);font-size:13px;padding:2px 6px;cursor:pointer}
+.btns{display:flex;gap:8px;margin-top:12px}
+button{font:inherit;border-radius:10px;padding:12px;cursor:pointer}
+.p{flex:1;background:var(--ac);color:#fff;border:0;font-weight:600}
+.s{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.note{color:var(--mu);font-size:12px;margin-top:12px}
+.tag{font-weight:700;color:var(--mu);font-size:14px;margin-left:6px}
+.org{text-align:center;font-weight:700;font-size:15px;margin:-2px 0 8px}
+td.l.n,th.l.n{min-width:46px;max-width:46px;width:46px;padding:2px;text-align:center;font-size:13px;font-weight:600;z-index:3}
+td.l{min-width:170px;max-width:170px}
+.sig{margin:18px 0 0 auto;width:min(100%,430px);display:grid;grid-template-columns:auto 28px 1fr;gap:14px 6px;align-items:end}
+.sig:empty{display:none}
+.sl{font-weight:700;font-size:15px;padding-right:8px}
+.sl.u{text-decoration:underline}
+.sn{font-weight:700;font-size:15px;text-align:right}
+.sig input{min-width:0;width:100%;border:0;border-bottom:1px solid var(--tx);border-radius:0;background:transparent;font:inherit;padding:6px 2px;color:var(--tx)}
+.fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;background:var(--bg);display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.fs.on{display:flex}
+.fs .bar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-weight:700}
+.fs .bar button{padding:8px 16px}
+.fs .body{flex:1;overflow:auto;background:#fff}
+.fs img{display:block;width:100%;min-width:1000px}
+.jon{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:17px;margin:4px 0 6px}
+.jon input{font:inherit;font-size:20px;font-weight:700;color:var(--red);background:var(--card);border:2px solid var(--ac);border-radius:10px;padding:6px 10px;width:130px;text-align:center}
+td.nm input{width:100%;border:0;background:transparent;color:var(--tx);font:inherit;font-size:15px;font-weight:700;padding:9px 4px;text-align:left}
+td.rt input{width:104px;border:0;background:transparent;color:var(--red);font:inherit;font-size:14px;text-align:center;padding:9px 2px}
+td.jn{color:var(--tx);font-size:14px;padding:9px 8px;font-weight:600}
+td.x{padding:0 2px}
+td.x button{border:0;background:none;color:var(--bad);font-size:20px;padding:4px 8px;line-height:1}
+.dr{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:2px 0 6px;font-weight:700}
+.dr select,.jon select{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 4px}
+.jon select{font-size:20px;font-weight:700;padding:6px 8px;border:2px solid var(--ac);border-radius:10px}
+.jon2{text-align:center;font-weight:700;font-size:17px;margin:0 0 6px}
+.jon2 b{color:var(--red);font-size:20px}
+td.tot{font-size:19px;font-weight:800;color:var(--red);background:var(--ac2);padding:0 12px;min-width:110px}
+td.sn{min-width:40px;font-size:13px;font-weight:600;padding:9px 6px}
+td.nm{min-width:110px}
+th.l,td.l{position:static;min-width:0;max-width:none}
+</style>
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<a class="back" href="index.html">← মেনু</a><span class="tag"></span>
+<h1 id="h1"></h1>
+<div class="dr"><span>তারিখঃ-</span><select id="fd" aria-label="শুরুর দিন"></select><select id="fm" aria-label="শুরুর মাস"></select><select id="fy" aria-label="শুরুর সাল"></select></div>
+<div class="dr"><span>হতে</span><select id="td" aria-label="শেষের দিন"></select><select id="tm" aria-label="শেষের মাস"></select><select id="ty" aria-label="শেষের সাল"></select></div>
+<div class="jon"><span>জনবল</span><input id="jon" inputmode="numeric" aria-label="জনবল"><span>×</span><select id="mul" aria-label="গুণক"></select></div>
+<div class="jon2">সৈনিক মেস জনবল = <b id="mj"></b></div>
+<div class="sub">জনবল আর গুণক বদলান, বাকি সব নিজে হিসাব হবে · হার ট্যাপ করে বদলানো যায়</div>
+<div class="wrap"><table id="tb"></table></div>
+<div class="btns"><button class="p" id="add">+ নতুন আইটেম</button><button class="s" id="pvb">প্রিভিউ</button><button class="s" id="pdf">PDF</button><button class="s" id="rst">রিসেট</button></div>
+<div class="note">ডাটা শুধু এই ফোনের ব্রাউজারে সেভ হয়। পরিমাণ = জনবল × হার। রিসেট দিলে জনবল ০ হয়ে সব পরিমাণ ০ হবে। হার আগে ঠিক করে নিন।</div>
+<div class="foot">Create By Ocu Emon</div>
+<div class="fs" id="fs"><div class="bar"><span>PDF প্রিভিউ</span><button class="s" id="fsx">বন্ধ ×</button></div><div class="body"><img id="fsi" alt="PDF প্রিভিউ"></div></div>
+<script>
+var PAL=[["#2f6b4f","#e4f1ea"],["#305496","#e8eefb"],["#b42318","#fdeceb"],["#6b3fa0","#f1eaf9"],["#c25a00","#fdf0e3"],["#374151","#eceef2"]];
+var PL="#e4f1ea";
+try{var th=+localStorage.getItem("sm-theme")||0;if(th>=0&&th<PAL.length){var rs=document.documentElement.style;rs.setProperty("--ac",PAL[th][0]);rs.setProperty("--ac2",PAL[th][1]);PL=PAL[th][1]}}catch(x){}
+
+var BD="০১২৩৪৫৬৭৮৯";
+function toBn(s){return String(s).replace(/[0-9]/g,function(d){return BD.charAt(+d)})}
+function toEn(s){return String(s).replace(/[০-৯]/g,function(d){return BD.indexOf(d)})}
+function f(x){return toBn((Math.round(x*1000)/1000).toFixed(3))}
+function rf(x){var s=parseFloat((+x||0).toFixed(6)).toString();if(s.indexOf("e")>=0)s=(+x||0).toFixed(6);return toBn(s)}
+function num(v){var n=parseFloat(toEn(v));return isNaN(n)?0:n}
+var MN=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
+var KEY="rr-mess1",S=null;
+var R0=[["চাল",0],["ডাল",0],["চিনি",0],["আটা",0],["তেল",0]];
+function fresh(){return{fd:"",fm:"",fy:"2026",td:"",tm:"",ty:"2026",jon:0,mul:7,items:R0.map(function(r){return{n:r[0],r:r[1]}})}}
+function E(){return S.jon*S.mul}
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(x){}
+if(!S||!S.items||S.jon===undefined||S.mul===undefined)S=fresh();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(x){}}
+function ttlTxt(){var y=S.fy||S.ty;return "সৈনিক-মেস রেশন প্রদান"+(y?" - "+toBn(y):"")}
+function dp(d,m,y){return (d?toBn(d):"      ")+"/"+(m?toBn(m):"      ")+"/"+toBn(y||"")}
+function dateTxt(){return "তারিখঃ- "+dp(S.fd,S.fm,S.fy)+" হতে "+dp(S.td,S.tm,S.ty)}
+var T=document.getElementById("tb"),jin=document.getElementById("jon"),mul=document.getElementById("mul");
+function head(){document.getElementById("h1").textContent=ttlTxt()}
+function build(){
+var h='<tr><th>ক্র/<br>নং</th><th>আইটেম</th><th>জনবল</th><th>× হার</th><th>= পরিমাণ<small>কেজি</small></th><th>মোট পরিমাণ<small>কেজি</small></th><th></th></tr>';
+S.items.forEach(function(it,i){
+h+='<tr><td class="sn">'+toBn(i+1)+'।</td><td class="nm"><input class="in" data-i="'+i+'" aria-label="আইটেম"></td><td class="jn" id="j'+i+'"></td><td class="rt"><input class="ir" type="text" inputmode="decimal" data-i="'+i+'" aria-label="হার"></td><td class="v" id="r'+i+'"></td>'+(i==0?'<td class="tot" id="tot" rowspan="'+S.items.length+'"></td>':'')+'<td class="x"><button class="dl" data-i="'+i+'" aria-label="মুছুন">×</button></td></tr>';
+});
+T.innerHTML=h;
+T.querySelectorAll(".in").forEach(function(e){var i=+e.dataset.i;e.value=S.items[i].n;e.oninput=function(){S.items[i].n=this.value;save()}});
+T.querySelectorAll(".ir").forEach(function(e){var i=+e.dataset.i;e.value=rf(S.items[i].r);
+e.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯.]/g,""));if(p!==this.value)this.value=p;S.items[i].r=num(p);calc();save()};
+e.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)};
+e.onblur=function(){this.value=rf(S.items[i].r)}});
+T.querySelectorAll(".dl").forEach(function(b){b.onclick=function(){var i=+this.dataset.i;if(confirm("\""+S.items[i].n+"\" মুছবেন?")){S.items.splice(i,1);save();build()}}});
+calc();
+}
+function tot(){var s=0;S.items.forEach(function(it){s+=E()*it.r});return s}
+function calc(){var mj=document.getElementById("mj");if(mj)mj.textContent=toBn(E());var te=document.getElementById("tot");if(te)te.textContent=f(tot());S.items.forEach(function(it,i){var a=document.getElementById("j"+i),b=document.getElementById("r"+i);if(a)a.textContent=toBn(E());if(b)b.textContent=f(E()*it.r)})}
+var DP=[["fd","fm","fy"],["td","tm","ty"]];
+(function(){var d='<option value="">দিন</option>',m='<option value="">মাস</option>',y="";
+for(var i=1;i<=31;i++)d+='<option value="'+i+'">'+toBn(i)+'</option>';
+MN.forEach(function(n,i){m+='<option value="'+(i+1)+'">'+toBn(i+1)+' - '+n+'</option>'});
+for(var k=2020;k<=2045;k++)y+='<option value="'+k+'">'+toBn(k)+'</option>';
+DP.forEach(function(g){var a=document.getElementById(g[0]),b=document.getElementById(g[1]),c=document.getElementById(g[2]);a.innerHTML=d;b.innerHTML=m;c.innerHTML=y;
+[a,b,c].forEach(function(el,j){el.onchange=function(){S[g[j]]=this.value;save();head()}})});
+var u="";for(var q=1;q<=31;q++)u+='<option value="'+q+'">'+toBn(q)+'</option>';mul.innerHTML=u})();
+mul.onchange=function(){S.mul=+this.value;calc();save()};
+function sync(){DP.forEach(function(g){g.forEach(function(k){document.getElementById(k).value=S[k]})});mul.value=S.mul;jin.value=toBn(S.jon);head()}
+jin.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯]/g,""));if(p!==this.value)this.value=p;S.jon=parseInt(toEn(p))||0;calc();save()};
+jin.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)};
+jin.onblur=function(){this.value=toBn(S.jon)};
+document.getElementById("add").onclick=function(){S.items.push({n:"নতুন",r:0});save();build();window.scrollTo(0,document.body.scrollHeight)};
+document.getElementById("rst").onclick=function(){if(confirm("জনবল ০ করে সব পরিমাণ ০ করবেন?")){S.jon=0;save();sync();calc()}};
+var PVURL="";
+function mkPdf(){
+var sc=2,pad=16,cwid=[50,190,110,150,150,150],rh=36,hh=44,W=pad*2+cwid.reduce(function(a,b){return a+b},0),n=S.items.length;
+var H=pad*2+112+hh+n*rh+40;
+var cv=document.createElement("canvas");cv.width=W*sc;cv.height=H*sc;
+var x=cv.getContext("2d");x.scale(sc,sc);x.fillStyle="#fff";x.fillRect(0,0,W,H);
+var FF='"Noto Sans Bengali","Nirmala UI","Segoe UI",system-ui,Arial,sans-serif';
+x.textBaseline="middle";
+function fit(t,mw,size,bold){var s=size;for(;;){x.font=(bold?"bold ":"")+s+"px "+FF;if(x.measureText(t).width<=mw||s<=8)break;s--}}
+function box(a,b,w,h,fill){if(fill){x.fillStyle=fill;x.fillRect(a,b,w,h)}x.strokeStyle="#777";x.lineWidth=1;x.strokeRect(a,b,w,h)}
+x.textAlign="center";x.fillStyle="#111";fit(ttlTxt(),W-2*pad,20,true);x.fillText(ttlTxt(),W/2,pad+16);
+x.font="15px "+FF;x.fillText(dateTxt(),W/2,pad+50);x.font="bold 17px "+FF;x.fillText("সৈনিক মেস জনবল = "+toBn(E()),W/2,pad+82);
+var y=pad+112,heads=["ক্র/নং","আইটেম","জনবল","× হার","= পরিমাণ (কেজি)","মোট পরিমাণ (কেজি)"],xx=pad;
+heads.forEach(function(t,i){box(xx,y,cwid[i],hh,PL);x.fillStyle="#111";fit(t,cwid[i]-8,14,true);x.fillText(t,xx+cwid[i]/2,y+hh/2);xx+=cwid[i]});
+y+=hh;var ys=y;
+S.items.forEach(function(it,i){
+var cells=[toBn(i+1)+"।",it.n,toBn(E()),rf(it.r),f(E()*it.r)];xx=pad;
+cells.forEach(function(t,k){box(xx,y,cwid[k],rh,k==4?PL:null);x.fillStyle=k==3||k==4?"#c0201a":"#111";x.textAlign=k==1?"left":"center";fit(t,cwid[k]-12,14,k==1||k==4);x.fillText(t,k==1?xx+8:xx+cwid[k]/2,y+rh/2);xx+=cwid[k]});
+x.textAlign="center";y+=rh;
+});
+if(n>0){var tx=pad+cwid[0]+cwid[1]+cwid[2]+cwid[3]+cwid[4];box(tx,ys,cwid[5],n*rh,PL);x.fillStyle="#c0201a";x.textAlign="center";fit(f(tot()),cwid[5]-12,20,true);x.fillText(f(tot()),tx+cwid[5]/2,ys+n*rh/2)}
+x.fillStyle="#555";x.font="12px "+FF;x.textAlign="center";x.fillText("Create by Ocu Emon",W/2,H-pad-2);
+var b64=cv.toDataURL("image/jpeg",0.92).split(",")[1];PVURL="data:image/jpeg;base64,"+b64;
+var bin=atob(b64),jpg=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)jpg[q]=bin.charCodeAt(q);
+var pw=Math.round(W*0.75),ph=Math.round(H*0.75),enc=new TextEncoder(),parts=[],off=[],len=0;
+function add(bb){if(typeof bb=="string")bb=enc.encode(bb);parts.push(bb);len+=bb.length}
+function obj(k,head,st){off[k]=len;add(k+" 0 obj\n"+head+"\n");if(st){add("stream\n");add(st);add("\nendstream\n")}add("endobj\n")}
+add("%PDF-1.4\n");
+obj(1,"<< /Type /Catalog /Pages 2 0 R >>");
+obj(2,"<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+obj(3,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 "+pw+" "+ph+"] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>");
+obj(4,"<< /Type /XObject /Subtype /Image /Width "+cv.width+" /Height "+cv.height+" /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length "+jpg.length+" >>",jpg);
+var cs="q "+pw+" 0 0 "+ph+" 0 0 cm /Im0 Do Q";
+obj(5,"<< /Length "+cs.length+" >>",cs);
+var xr=len;add("xref\n0 6\n0000000000 65535 f \n");
+for(var z=1;z<=5;z++)add(("0000000000"+off[z]).slice(-10)+" 00000 n \n");
+add("trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n"+xr+"\n%%EOF");
+return new Blob(parts,{type:"application/pdf"});
+}
+
+document.getElementById("pdf").onclick=function(){try{var bl=mkPdf(),u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download="JQ-mess-ration.pdf";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000)}catch(e){alert("PDF বানানো যায়নি।")}};
+function openFs(){try{mkPdf()}catch(e){}document.getElementById("fsi").src=PVURL;document.getElementById("fs").className="fs on"}
+function closeFs(){document.getElementById("fs").className="fs"}
+document.getElementById("pvb").onclick=openFs;
+document.getElementById("fsx").onclick=closeFs;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeFs()});
+sync();build();
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+</script>
+</body>
+</html>

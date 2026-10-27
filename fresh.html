@@ -24,6 +24,10 @@ h1{font-size:21px;margin:6px 4px 2px;text-align:center}
 .pgbar button{padding:8px 12px;font-size:14px}
 .pgbar button:disabled{opacity:.35}
 .pgbar select{font:inherit;font-weight:700;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 6px}
+td.cmt{min-width:180px;padding:3px 6px;text-align:left;font-size:13px}
+td.cmt input.gh{width:58px;border:1px solid var(--bd);border-radius:6px;text-align:center;color:var(--red);font-weight:800;font-size:15px;padding:6px 2px;background:var(--card)}
+td.cmt input.ct{width:100%;border:1px solid var(--bd);border-radius:8px;padding:7px 6px;background:var(--card);color:var(--tx);font-size:14px}
+.gt{font-weight:700;color:var(--bad);font-size:14px}
 .obv{font-weight:800;font-size:16px;color:var(--tx);padding:10px 2px;display:inline-block}
 .wrap{overflow-x:auto;background:var(--card);border:1px solid var(--bd);border-radius:10px}
 table{border-collapse:collapse;min-width:100%}
@@ -93,7 +97,7 @@ var DESC=["সকালের নাস্তা (খিচুড়ি)","দ�
 var ADD="SSD হতে সংগ্রহ",CUS="__c";
 function tinfo(){for(var i=0;i<TYPES.length;i++)if(TYPES[i][0]===S.type)return TYPES[i];return TYPES[0]}
 function fq(x){return tinfo()[2]==="পিস"?toBn(Math.round(x*100)/100):f3(x)}
-function blankRow(){return{d:"",m:"",fj:null,fs:null,mj:null,cv:null,ds:"",cu:"",a:null}}
+function blankRow(){return{d:"",m:"",fj:null,fs:null,mj:null,cv:null,ds:"",cu:"",a:null,gh:null,cm:""}}
 function blankPage(){var r=[];for(var i=0;i<6;i++)r.push(blankRow());return{open:{d:"",m:"",bal:0},rows:r}}
 function blankData(){return{pages:[blankPage()]}}
 function fresh(){var o={type:"cow",y:"2026",pi:{},data:{}};TYPES.forEach(function(t){o.data[t[0]]=blankData()});return o}
@@ -118,15 +122,15 @@ var Tb=document.getElementById("tb"),tySel=document.getElementById("ty"),yrSel=d
 function head(){document.getElementById("h1").textContent=ttl()}
 function dateCell(r){return '<td class="l dt"><select class="sd" data-r="'+r+'" aria-label="দিন">'+DOPT+'</select><span>/</span><select class="sm" data-r="'+r+'" aria-label="মাস">'+MOPT+'</select><span>/'+yy()+'</span></td>'}
 function build(){
-var u=tinfo()[2],dd=D(),h='<tr><th class="l">তারিখ</th><th>ফ্রেশ<br>জনবল</th><th>ফ্রেশ<br>সংগ্রহ</th><th>মেস<br>জনবল</th><th>সিভিল</th><th>মোট<br>জনবল</th><th>খরচের বিবরণ</th><th>ব্যালেন্স<br><small>('+u+')</small></th><th></th></tr>';
-h+='<tr class="op">'+dateCell(-1)+'<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="ds"><span class="fx">পূর্বের পাতার জের</span></td><td class="bl">'+(cur()===0?'<input class="ob" inputmode="decimal" aria-label="পূর্বের জের">':'<span class="obv" id="obv"></span>')+'</td><td></td></tr>';
+var u=tinfo()[2],dd=D(),h='<tr><th class="l">তারিখ</th><th>ফ্রেশ<br>জনবল</th><th>ফ্রেশ<br>সংগ্রহ</th><th>মেস<br>জনবল</th><th>সিভিল</th><th>মোট<br>জনবল</th><th>খরচের বিবরণ</th><th>ব্যালেন্স<br><small>('+u+')</small></th><th>মন্তব্য</th><th></th></tr>';
+h+='<tr class="op">'+dateCell(-1)+'<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="ds"><span class="fx">পূর্বের পাতার জের</span></td><td class="bl">'+(cur()===0?'<input class="ob" inputmode="decimal" aria-label="পূর্বের জের">':'<span class="obv" id="obv"></span>')+'</td><td></td><td></td></tr>';
 dd.rows.forEach(function(r,i){
 h+='<tr>'+dateCell(i);
 ["fj","fs","mj","cv"].forEach(function(k){h+='<td><input class="n" type="text" inputmode="numeric" placeholder="-" data-r="'+i+'" data-k="'+k+'" aria-label="'+k+'"></td>'});
 h+='<td class="v" id="t'+i+'"></td>';
 var o='<option value="">-- বেছে নিন --</option>';DESC.forEach(function(x){o+='<option value="'+x+'">'+x+'</option>'});o+='<option value="'+CUS+'">✎ কাস্টম লিখুন</option>';
 h+='<td class="ds"><select class="sdesc" data-r="'+i+'" aria-label="খরচের বিবরণ">'+o+'</select><input class="cu" data-r="'+i+'" placeholder="বিবরণ লিখুন" aria-label="কাস্টম বিবরণ"></td>';
-h+='<td class="bl"><div class="am"><span class="sg" id="sg'+i+'"></span><input class="a" type="text" inputmode="decimal" placeholder="পরিমাণ" data-r="'+i+'" aria-label="পরিমাণ"></div><div class="bv" id="b'+i+'"></div></td>';
+h+='<td class="bl"><div class="am"><span class="sg" id="sg'+i+'"></span><input class="a" type="text" inputmode="decimal" placeholder="পরিমাণ" data-r="'+i+'" aria-label="পরিমাণ"></div><div class="bv" id="b'+i+'"></div></td><td class="cmt" id="cm'+i+'"></td>';
 h+='<td class="x"><button class="dl" data-r="'+i+'" aria-label="মুছুন">×</button></td></tr>';
 });
 Tb.innerHTML=h;
@@ -151,11 +155,20 @@ var known=DESC.indexOf(row.ds)>=0||row.ds===CUS||row.ds==="";
 e.value=known?row.ds:"";
 function vis(){cu.style.display=row.ds===CUS?"block":"none"}
 cu.value=row.cu||"";vis();
-e.onchange=function(){row.ds=this.value;vis();calc();save()};
+e.onchange=function(){row.ds=this.value;vis();renderCm(r);calc();save()};
 cu.oninput=function(){row.cu=this.value;save()}});
 Tb.querySelectorAll(".dl").forEach(function(b){b.onclick=function(){var r=+this.dataset.r;if(confirm("এই সারি মুছবেন?")){dd.rows.splice(r,1);save();build()}}});
+dd.rows.forEach(function(r,i){renderCm(i)});
 calc();
 }
+function ghTxt(v){return toBn(+(Math.round((v||0)*1000)/1000))}
+function renderCm(i){var r=D().rows[i],td=document.getElementById("cm"+i);if(!td)return;td.innerHTML="";
+if(r.ds===ADD){var inp=document.createElement("input"),sp=document.createElement("span");inp.className="gh";inp.type="text";inp.setAttribute("inputmode","decimal");inp.setAttribute("aria-label","ঘাটতির পরিমাণ");inp.value=ghTxt(r.gh);
+inp.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯.]/g,""));if(p!==this.value)this.value=p;r.gh=num(p);save()};
+inp.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)};
+inp.onblur=function(){this.value=ghTxt(r.gh)};
+sp.className="gt";sp.textContent=" "+tinfo()[2]+" ঘাটতি";td.appendChild(inp);td.appendChild(sp)}
+else{var t=document.createElement("input");t.className="ct";t.placeholder="মন্তব্য";t.setAttribute("aria-label","মন্তব্য");t.value=r.cm||"";t.oninput=function(){r.cm=this.value;save()};td.appendChild(t)}}
 function calc(){
 var dd=D(),prev=openBal(cur());var ov=document.getElementById("obv");if(ov)ov.textContent=fq(prev);
 dd.rows.forEach(function(r,i){
@@ -184,7 +197,7 @@ document.getElementById("add").onclick=function(){D().rows.push(blankRow());save
 document.getElementById("rst").onclick=function(){if(confirm("\""+tinfo()[1]+"\" টেবিলের সব পাতার সব লেখা মুছে ফাঁকা করবেন?")){S.data[S.type]=blankData();S.pi[S.type]=0;save();updatePg();build()}};
 var PVURL="";
 function mkPdf(){
-var sc=2,pad=16,cw=[96,74,74,74,66,74,250,140],rh=48,hh=52,dd=D(),n=dd.rows.length,W=pad*2+cw.reduce(function(a,b){return a+b},0);
+var sc=2,pad=16,cw=[96,74,74,74,66,74,250,140,200],rh=48,hh=52,dd=D(),n=dd.rows.length,W=pad*2+cw.reduce(function(a,b){return a+b},0);
 var H=pad*2+96+hh+(n+1)*rh+50;
 var cv=document.createElement("canvas");cv.width=W*sc;cv.height=H*sc;
 var x=cv.getContext("2d");x.scale(sc,sc);x.fillStyle="#fff";x.fillRect(0,0,W,H);
@@ -194,7 +207,7 @@ function fit(t,mw,size,bold){var s=size;for(;;){x.font=(bold?"bold ":"")+s+"px "
 function box(a,b,w,h,fill){if(fill){x.fillStyle=fill;x.fillRect(a,b,w,h)}x.strokeStyle="#777";x.lineWidth=1;x.strokeRect(a,b,w,h)}
 x.textAlign="center";x.fillStyle="#111";fit(ttl(),W-2*pad,22,true);x.fillText(ttl(),W/2,pad+18);
 x.font="bold 17px "+FF;x.fillText("২৯ লোকেটিং ব্যাটারী",W/2,pad+54);if(DT().pages.length>1){x.font="14px "+FF;x.textAlign="right";x.fillText("পাতা - "+toBn(cur()+1),W-pad,pad+54);x.textAlign="center"}
-var y=pad+96,heads=["তারিখ","ফ্রেশ জনবল","ফ্রেশ সংগ্রহ","মেস জনবল","সিভিল","মোট জনবল","খরচের বিবরণ","ব্যালেন্স ("+tinfo()[2]+")"],xx=pad;
+var y=pad+96,heads=["তারিখ","ফ্রেশ জনবল","ফ্রেশ সংগ্রহ","মেস জনবল","সিভিল","মোট জনবল","খরচের বিবরণ","ব্যালেন্স ("+tinfo()[2]+")","মন্তব্য"],xx=pad;
 heads.forEach(function(t,i){box(xx,y,cw[i],hh,PL);x.fillStyle="#111";fit(t,cw[i]-8,14,true);x.fillText(t,xx+cw[i]/2,y+hh/2);xx+=cw[i]});
 y+=hh;
 function dtxt(o){return (o.d||o.m)?(o.d?toBn(o.d):"  ")+"/"+(o.m?toBn(o.m):"  ")+"/"+yy():""}
@@ -203,7 +216,7 @@ var xs=[];xx=pad;cw.forEach(function(w){xs.push(xx);xx+=w});
 cell(0,dtxt(dd.open),{x:xs[0],col:"#111",fill:PL});
 for(var q=1;q<=5;q++)cell(q,"-",{x:xs[q],col:"#999",fill:PL});
 cell(6,"পূর্বের পাতার জের",{x:xs[6],col:"#111",b:true,al:"left",fill:PL});
-cell(7,fq(openBal(cur())),{x:xs[7],b:true,fill:PL,sz:16});
+cell(7,fq(openBal(cur())),{x:xs[7],b:true,fill:PL,sz:16});cell(8,"",{x:xs[8],fill:PL});
 y+=rh;var prev=openBal(cur());
 dd.rows.forEach(function(r){
 cell(0,dtxt(r),{x:xs[0],col:"#111"});
@@ -211,6 +224,7 @@ cell(0,dtxt(r),{x:xs[0],col:"#111"});
 cell(5,(r.mj==null&&r.cv==null)?"-":toBn((r.mj||0)+(r.cv||0)),{x:xs[5],col:(r.mj==null&&r.cv==null)?"#999":"#c0201a",b:true});
 cell(6,r.ds===CUS?(r.cu||""):(r.ds||""),{x:xs[6],col:"#111",al:"left",sz:14});
 var has=r.a!=null,add=r.ds===ADD;if(has)prev=add?prev+r.a:prev-r.a;
+cell(8,r.ds===ADD?ghTxt(r.gh)+" "+tinfo()[2]+" ঘাটতি":(r.cm||""),{x:xs[8],col:r.ds===ADD?"#b42318":"#111",al:"left",sz:14,b:r.ds===ADD});
 box(xs[7],y,cw[7],rh,null);
 if(has){x.fillStyle="#c0201a";x.font="13px "+FF;x.textAlign="center";x.fillText((add?"(+) ":"(−) ")+fq(r.a),xs[7]+cw[7]/2,y+14);
 x.strokeStyle="#111";x.beginPath();x.moveTo(xs[7]+14,y+25);x.lineTo(xs[7]+cw[7]-14,y+25);x.stroke();

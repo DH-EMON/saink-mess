@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="bn" translate="no" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>সৈনিক মেস</title>
+<meta name="theme-color" content="#2f6b4f">
+<meta name="apple-mobile-web-app-title" content="সৈনিক মেস">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{color-scheme:light;--bg:#f5f6fa;--card:#fff;--tx:#1b1f2a;--mu:#6b7280;--ac:#2f6b4f;--ac2:#e4f1ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Bengali","Nirmala UI",Arial,sans-serif;padding:20px 14px 70px}
+h1{font-size:26px;margin:14px 4px 4px;text-align:center}
+.sub{color:var(--mu);font-size:13px;text-align:center;margin-bottom:6px}
+.menu{max-width:460px;margin:22px auto 0;display:flex;flex-direction:column;gap:14px}
+.menu a{display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--ac);color:var(--tx);text-decoration:none;border-radius:16px;padding:20px 18px;font-size:20px;font-weight:700}
+.menu a span{background:var(--ac);color:#fff;border-radius:50%;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.sw{display:flex;gap:12px;justify-content:center;margin:28px 0 4px}
+.sw button{width:30px;height:30px;border-radius:50%;border:3px solid transparent;padding:0;cursor:pointer}
+.sw button.on{border-color:var(--tx)}
+.foot{text-align:center;color:var(--mu);font-size:13px;margin-top:22px;font-weight:600}
+</style>
+</head>
+<body>
+<h1>সৈনিক মেস</h1>
+<div class="sub">২৯ লোকেটিং ব্যাটারী</div>
+<div class="menu">
+<a href="fresh.html"><span>১</span>অতিরিক্ত ফ্রেশ এর হিসাব</a>
+</div>
+<div class="sw" id="sw" aria-label="রঙের থিম"></div>
+<div class="foot">Create By Ocu Emon</div>
+<script>
+var PAL=[["সবুজ","#2f6b4f","#e4f1ea"],["নীল","#305496","#e8eefb"],["লাল","#b42318","#fdeceb"],["বেগুনি","#6b3fa0","#f1eaf9"],["কমলা","#c25a00","#fdf0e3"],["ধূসর","#374151","#eceef2"]];
+var TH=0;try{TH=+localStorage.getItem("sm-theme")||0}catch(x){}
+if(TH<0||TH>=PAL.length)TH=0;
+function applyTh(){var p=PAL[TH],r=document.documentElement.style;r.setProperty("--ac",p[1]);r.setProperty("--ac2",p[2]);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=p[1];document.querySelectorAll("#sw button").forEach(function(b,i){b.className=i==TH?"on":""})}
+PAL.forEach(function(p,i){var b=document.createElement("button");b.style.background=p[1];b.setAttribute("aria-label",p[0]);b.onclick=function(){TH=i;try{localStorage.setItem("sm-theme",i)}catch(x){}applyTh()};document.getElementById("sw").appendChild(b)});
+applyTh();
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});["fresh.html"].forEach(function(u){fetch(u).catch(function(){})})})}
+</script>
+</body>
+</html>

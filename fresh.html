@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="bn" translate="no" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>অতিরিক্ত ফ্রেশ এর হিসাব</title>
+<meta name="theme-color" content="#2f6b4f">
+<meta name="apple-mobile-web-app-title" content="সৈনিক মেস">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{color-scheme:light;--bg:#f5f6fa;--card:#fff;--tx:#1b1f2a;--mu:#6b7280;--bd:#c9ced9;--ac:#2f6b4f;--ac2:#e4f1ea;--red:#c0201a;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Bengali","Nirmala UI",Arial,sans-serif;padding:14px 10px 70px}
+h1{font-size:21px;margin:6px 4px 2px;text-align:center}
+.org{text-align:center;font-weight:700;font-size:16px;margin:0 0 10px}
+.back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
+.sub{color:var(--mu);font-size:12px;text-align:center;margin:0 0 10px}
+.foot{text-align:center;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
+.ctl{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 6px;font-weight:700}
+.ctl select{font:inherit;font-size:17px;font-weight:700;color:var(--tx);background:var(--card);border:2px solid var(--ac);border-radius:10px;padding:7px 10px}
+.pgbar{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 4px;font-weight:700}
+.pgbar button{padding:8px 12px;font-size:14px}
+.pgbar button:disabled{opacity:.35}
+.pgbar select{font:inherit;font-weight:700;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 6px}
+.obv{font-weight:800;font-size:16px;color:var(--tx);padding:10px 2px;display:inline-block}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+table{border-collapse:collapse;min-width:100%}
+th,td{border:1px solid var(--bd);padding:0;text-align:center;white-space:nowrap;vertical-align:middle}
+th{background:var(--ac2);font-size:13px;padding:8px 6px}
+td.l,th.l{position:sticky;left:0;z-index:2;background:var(--card)}
+th.l{background:var(--ac2);z-index:3}
+td.dt{padding:2px 3px;min-width:132px}
+td.dt select{font:inherit;font-size:14px;color:var(--tx);background:transparent;border:0;padding:6px 0;width:46px}
+td.dt span{font-size:13px;color:var(--mu)}
+td input,td select.sdesc{font:inherit}
+td input.n{width:64px;border:0;background:transparent;color:var(--red);font-size:15px;text-align:center;padding:12px 2px}
+td.v{color:var(--red);font-size:15px;font-weight:700;padding:0 8px;min-width:64px}
+td.ds{min-width:200px;padding:3px 4px;text-align:left}
+td.ds select{width:100%;font-size:14px;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:8px;padding:6px 4px}
+td.ds input{width:100%;margin-top:3px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font-size:14px;padding:6px}
+td.ds .fx{font-weight:700;font-size:14px;padding:8px 4px;display:block}
+td.bl{min-width:130px;padding:2px 6px}
+.am{display:flex;align-items:center;justify-content:center;gap:2px;color:var(--red);font-size:13px}
+.am input{width:84px;border:0;background:transparent;color:var(--red);font-size:14px;text-align:center;padding:4px 2px}
+.am .sg{font-weight:800}
+.bv{font-weight:800;font-size:16px;color:var(--tx);border-top:1px solid var(--tx);margin:0 6px;padding:2px 0 3px;min-height:22px}
+.bv.neg{color:var(--bad)}
+.ob{width:100px;border:0;background:transparent;color:var(--red);font-size:16px;font-weight:800;text-align:center;padding:10px 2px}
+input:focus,select:focus{outline:2px solid var(--ac);background:var(--ac2)}
+td.x{padding:0 2px}
+td.x button{border:0;background:none;color:var(--bad);font-size:20px;padding:4px 8px;line-height:1}
+tr.op td{background:var(--ac2)}
+tr.op td.l{background:var(--ac2)}
+.btns{display:flex;gap:8px;margin-top:12px}
+button{font:inherit;border-radius:10px;padding:12px;cursor:pointer}
+.p{flex:1;background:var(--ac);color:#fff;border:0;font-weight:600}
+.s{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.note{color:var(--mu);font-size:12px;margin-top:12px}
+.fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;background:var(--bg);display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.fs.on{display:flex}
+.fs .bar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-weight:700}
+.fs .bar button{padding:8px 16px}
+.fs .body{flex:1;overflow:auto;background:#fff}
+.fs img{display:block;width:100%;min-width:1000px}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← মেনু</a>
+<div class="ctl"><select id="ty" aria-label="ধরন"></select><select id="yr" aria-label="সাল"></select></div>
+<div class="pgbar"><button class="s" id="pp" aria-label="আগের পাতা">◀</button><select id="pgs" aria-label="পাতা"></select><span id="pgn"></span><button class="s" id="pn" aria-label="পরের পাতা">▶</button><button class="s" id="np">+ নতুন পাতা</button><button class="s" id="delp">পাতা মুছুন</button></div>
+<h1 id="h1"></h1>
+<div class="org">২৯ লোকেটিং ব্যাটারী</div>
+<div class="sub">ডানে-বামে সরিয়ে দেখুন · লাল ঘরে ট্যাপ করে লিখুন · মোট জনবল আর ব্যালেন্স নিজে হিসাব হয়</div>
+<div class="wrap"><table id="tb"></table></div>
+<div class="btns"><button class="p" id="add">+ নতুন সারি</button><button class="s" id="pvb">প্রিভিউ</button><button class="s" id="pdf">PDF</button><button class="s" id="rst">রিসেট</button></div>
+<div class="note">ডাটা শুধু এই ফোনের ব্রাউজারে সেভ হয়। প্রতিটা ধরনের টেবিল আলাদা সেভ থাকে। মোট জনবল = মেস জনবল + সিভিল। পাতা শেষ হলে "+ নতুন পাতা" দিন, আগের পাতার শেষ ব্যালেন্স নতুন পাতার "পূর্বের পাতার জের" হবে। খরচ আগের ব্যালেন্স থেকে বিয়োগ হয়, "SSD হতে সংগ্রহ" যোগ হয়।</div>
+<div class="foot">Create By Ocu Emon</div>
+<div class="fs" id="fs"><div class="bar"><span>PDF প্রিভিউ</span><button class="s" id="fsx">বন্ধ ×</button></div><div class="body"><img id="fsi" alt="PDF প্রিভিউ"></div></div>
+<script>
+var PAL=[["#2f6b4f","#e4f1ea"],["#305496","#e8eefb"],["#b42318","#fdeceb"],["#6b3fa0","#f1eaf9"],["#c25a00","#fdf0e3"],["#374151","#eceef2"]];
+var PL="#e4f1ea",AC="#2f6b4f";
+try{var th=+localStorage.getItem("sm-theme")||0;if(th>=0&&th<PAL.length){var rs=document.documentElement.style;rs.setProperty("--ac",PAL[th][0]);rs.setProperty("--ac2",PAL[th][1]);PL=PAL[th][1];AC=PAL[th][0]}}catch(x){}
+
+var BD="০১২৩৪৫৬৭৮৯";
+function toBn(s){return String(s).replace(/[0-9]/g,function(d){return BD.charAt(+d)})}
+function toEn(s){return String(s).replace(/[০-৯]/g,function(d){return BD.indexOf(d)})}
+function num(v){var n=parseFloat(toEn(v));return isNaN(n)?0:n}
+function f3(x){return toBn((Math.round(x*1000)/1000).toFixed(3))}
+var TYPES=[["cow","গরু","কেজি"],["khasi","খাসি","কেজি"],["murgi","মুরগী","কেজি"],["dim","ডিম","পিস"]];
+var DESC=["সকালের নাস্তা (খিচুড়ি)","দুপুরের খাবার","দুপুরের খাবার (ইমপ্রুভ)","রাতের খাবার","ট্রিব্রেক (তেহেরী)","SSD হতে সংগ্রহ"];
+var ADD="SSD হতে সংগ্রহ",CUS="__c";
+function tinfo(){for(var i=0;i<TYPES.length;i++)if(TYPES[i][0]===S.type)return TYPES[i];return TYPES[0]}
+function fq(x){return tinfo()[2]==="পিস"?toBn(Math.round(x*100)/100):f3(x)}
+function blankRow(){return{d:"",m:"",fj:null,fs:null,mj:null,cv:null,ds:"",cu:"",a:null}}
+function blankPage(){var r=[];for(var i=0;i<6;i++)r.push(blankRow());return{open:{d:"",m:"",bal:0},rows:r}}
+function blankData(){return{pages:[blankPage()]}}
+function fresh(){var o={type:"cow",y:"2026",pi:{},data:{}};TYPES.forEach(function(t){o.data[t[0]]=blankData()});return o}
+var KEY="sm-fresh1",S=null;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(x){}
+if(S&&S.data)TYPES.forEach(function(t){var d=S.data[t[0]];if(d&&d.rows&&!d.pages)S.data[t[0]]={pages:[{open:d.open,rows:d.rows}]}});
+if(S&&!S.pi)S.pi={};
+if(!S||!S.data||!TYPES.every(function(t){var d=S.data[t[0]];return d&&d.pages&&d.pages.length&&d.pages.every(function(p){return p.open&&p.rows})}))S=fresh();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(x){}}
+function DT(){return S.data[S.type]}
+function cur(){var n=DT().pages.length,i=(S.pi&&S.pi[S.type])||0;return Math.min(Math.max(i,0),n-1)}
+function D(){return DT().pages[cur()]}
+function pageEnd(t,i){var p=S.data[t].pages[i],prev=i===0?(p.open.bal||0):pageEnd(t,i-1);p.rows.forEach(function(r){if(r.a!=null)prev=r.ds===ADD?prev+r.a:prev-r.a});return prev}
+function openBal(i){return i===0?(S.data[S.type].pages[0].open.bal||0):pageEnd(S.type,i-1)}
+var MN=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
+var DOPT='<option value="">দিন</option>',MOPT='<option value="">মাস</option>';
+for(var i=1;i<=31;i++)DOPT+='<option value="'+i+'">'+toBn(i)+'</option>';
+for(var j=0;j<12;j++)MOPT+='<option value="'+(j+1)+'">'+toBn(j+1)+'</option>';
+function yy(){return toBn(("0"+(S.y%100)).slice(-2))}
+function ttl(){return "অতিরিক্ত ফ্রেশ - "+toBn(S.y)+" ("+tinfo()[1]+")"}
+var Tb=document.getElementById("tb"),tySel=document.getElementById("ty"),yrSel=document.getElementById("yr");
+function head(){document.getElementById("h1").textContent=ttl()}
+function dateCell(r){return '<td class="l dt"><select class="sd" data-r="'+r+'" aria-label="দিন">'+DOPT+'</select><span>/</span><select class="sm" data-r="'+r+'" aria-label="মাস">'+MOPT+'</select><span>/'+yy()+'</span></td>'}
+function build(){
+var u=tinfo()[2],dd=D(),h='<tr><th class="l">তারিখ</th><th>ফ্রেশ<br>জনবল</th><th>ফ্রেশ<br>সংগ্রহ</th><th>মেস<br>জনবল</th><th>সিভিল</th><th>মোট<br>জনবল</th><th>খরচের বিবরণ</th><th>ব্যালেন্স<br><small>('+u+')</small></th><th></th></tr>';
+h+='<tr class="op">'+dateCell(-1)+'<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td class="ds"><span class="fx">পূর্বের পাতার জের</span></td><td class="bl">'+(cur()===0?'<input class="ob" inputmode="decimal" aria-label="পূর্বের জের">':'<span class="obv" id="obv"></span>')+'</td><td></td></tr>';
+dd.rows.forEach(function(r,i){
+h+='<tr>'+dateCell(i);
+["fj","fs","mj","cv"].forEach(function(k){h+='<td><input class="n" type="text" inputmode="numeric" placeholder="-" data-r="'+i+'" data-k="'+k+'" aria-label="'+k+'"></td>'});
+h+='<td class="v" id="t'+i+'"></td>';
+var o='<option value="">-- বেছে নিন --</option>';DESC.forEach(function(x){o+='<option value="'+x+'">'+x+'</option>'});o+='<option value="'+CUS+'">✎ কাস্টম লিখুন</option>';
+h+='<td class="ds"><select class="sdesc" data-r="'+i+'" aria-label="খরচের বিবরণ">'+o+'</select><input class="cu" data-r="'+i+'" placeholder="বিবরণ লিখুন" aria-label="কাস্টম বিবরণ"></td>';
+h+='<td class="bl"><div class="am"><span class="sg" id="sg'+i+'"></span><input class="a" type="text" inputmode="decimal" placeholder="পরিমাণ" data-r="'+i+'" aria-label="পরিমাণ"></div><div class="bv" id="b'+i+'"></div></td>';
+h+='<td class="x"><button class="dl" data-r="'+i+'" aria-label="মুছুন">×</button></td></tr>';
+});
+Tb.innerHTML=h;
+function setDate(el,obj,key,r){el.value=obj[key];el.onchange=function(){obj[key]=this.value;save()}}
+Tb.querySelectorAll(".sd").forEach(function(e){var r=+e.dataset.r,o=r<0?dd.open:dd.rows[r];setDate(e,o,"d",r)});
+Tb.querySelectorAll(".sm").forEach(function(e){var r=+e.dataset.r,o=r<0?dd.open:dd.rows[r];setDate(e,o,"m",r)});
+var ob=Tb.querySelector(".ob");if(ob){ob.value=fq(dd.open.bal||0);
+ob.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯.]/g,""));if(p!==this.value)this.value=p;dd.open.bal=num(p);calc();save()};
+ob.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)};
+ob.onblur=function(){this.value=fq(dd.open.bal||0)}}
+Tb.querySelectorAll("input.n").forEach(function(e){var r=+e.dataset.r,k=e.dataset.k,row=dd.rows[r];
+e.value=row[k]==null?"":toBn(row[k]);
+e.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯]/g,""));if(p!==this.value)this.value=p;row[k]=p===""?null:parseInt(toEn(p));calc();save()};
+e.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)}});
+Tb.querySelectorAll("input.a").forEach(function(e){var r=+e.dataset.r,row=dd.rows[r];
+e.value=row.a==null?"":fq(row.a);
+e.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯.]/g,""));if(p!==this.value)this.value=p;row.a=p===""?null:num(p);calc();save()};
+e.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)};
+e.onblur=function(){this.value=row.a==null?"":fq(row.a)}});
+Tb.querySelectorAll("select.sdesc").forEach(function(e){var r=+e.dataset.r,row=dd.rows[r],cu=e.parentNode.querySelector(".cu");
+var known=DESC.indexOf(row.ds)>=0||row.ds===CUS||row.ds==="";
+e.value=known?row.ds:"";
+function vis(){cu.style.display=row.ds===CUS?"block":"none"}
+cu.value=row.cu||"";vis();
+e.onchange=function(){row.ds=this.value;vis();calc();save()};
+cu.oninput=function(){row.cu=this.value;save()}});
+Tb.querySelectorAll(".dl").forEach(function(b){b.onclick=function(){var r=+this.dataset.r;if(confirm("এই সারি মুছবেন?")){dd.rows.splice(r,1);save();build()}}});
+calc();
+}
+function calc(){
+var dd=D(),prev=openBal(cur());var ov=document.getElementById("obv");if(ov)ov.textContent=fq(prev);
+dd.rows.forEach(function(r,i){
+var te=document.getElementById("t"+i);
+if(te)te.textContent=(r.mj==null&&r.cv==null)?"-":toBn((r.mj||0)+(r.cv||0));
+var has=r.a!=null,add=r.ds===ADD;
+if(has)prev=add?prev+r.a:prev-r.a;
+var sg=document.getElementById("sg"+i),bv=document.getElementById("b"+i);
+if(sg)sg.textContent=has?(add?"+":"−"):"";
+if(bv){bv.textContent=has?fq(prev):"";bv.className="bv"+(prev<0&&has?" neg":"")}
+});
+}
+(function(){var h="";TYPES.forEach(function(t){h+='<option value="'+t[0]+'">'+t[1]+'</option>'});tySel.innerHTML=h;h="";for(var y=2020;y<=2045;y++)h+='<option value="'+y+'">'+toBn(y)+'</option>';yrSel.innerHTML=h})();
+var pgs=document.getElementById("pgs"),pgn=document.getElementById("pgn"),pp=document.getElementById("pp"),pn=document.getElementById("pn"),delp=document.getElementById("delp");
+function updatePg(){var n=DT().pages.length,c=cur(),h="";for(var i=0;i<n;i++)h+='<option value="'+i+'">পাতা '+toBn(i+1)+'</option>';pgs.innerHTML=h;pgs.value=c;pgn.textContent="/ "+toBn(n);pp.disabled=c===0;pn.disabled=c===n-1;delp.style.display=n>1?"inline-block":"none"}
+function goPg(i){S.pi[S.type]=i;save();updatePg();build()}
+pgs.onchange=function(){goPg(+this.value)};
+pp.onclick=function(){goPg(cur()-1)};
+pn.onclick=function(){goPg(cur()+1)};
+document.getElementById("np").onclick=function(){DT().pages.push(blankPage());goPg(DT().pages.length-1);window.scrollTo(0,0)};
+delp.onclick=function(){var c=cur(),t=DT();if(confirm("পাতা "+toBn(c+1)+" মুছবেন?")){if(c===0){t.pages[1].open.bal=openBal(1)}t.pages.splice(c,1);goPg(Math.min(c,t.pages.length-1))}};
+tySel.value=S.type;yrSel.value=S.y;head();updatePg();
+tySel.onchange=function(){S.type=this.value;save();head();updatePg();build()};
+yrSel.onchange=function(){S.y=this.value;save();head();build()};
+document.getElementById("add").onclick=function(){D().rows.push(blankRow());save();build();window.scrollTo(0,document.body.scrollHeight)};
+document.getElementById("rst").onclick=function(){if(confirm("\""+tinfo()[1]+"\" টেবিলের সব পাতার সব লেখা মুছে ফাঁকা করবেন?")){S.data[S.type]=blankData();S.pi[S.type]=0;save();updatePg();build()}};
+var PVURL="";
+function mkPdf(){
+var sc=2,pad=16,cw=[96,74,74,74,66,74,250,140],rh=48,hh=52,dd=D(),n=dd.rows.length,W=pad*2+cw.reduce(function(a,b){return a+b},0);
+var H=pad*2+96+hh+(n+1)*rh+50;
+var cv=document.createElement("canvas");cv.width=W*sc;cv.height=H*sc;
+var x=cv.getContext("2d");x.scale(sc,sc);x.fillStyle="#fff";x.fillRect(0,0,W,H);
+var FF='"Noto Sans Bengali","Nirmala UI","Segoe UI",system-ui,Arial,sans-serif';
+x.textBaseline="middle";
+function fit(t,mw,size,bold){var s=size;for(;;){x.font=(bold?"bold ":"")+s+"px "+FF;if(x.measureText(t).width<=mw||s<=8)break;s--}}
+function box(a,b,w,h,fill){if(fill){x.fillStyle=fill;x.fillRect(a,b,w,h)}x.strokeStyle="#777";x.lineWidth=1;x.strokeRect(a,b,w,h)}
+x.textAlign="center";x.fillStyle="#111";fit(ttl(),W-2*pad,22,true);x.fillText(ttl(),W/2,pad+18);
+x.font="bold 17px "+FF;x.fillText("২৯ লোকেটিং ব্যাটারী",W/2,pad+54);if(DT().pages.length>1){x.font="14px "+FF;x.textAlign="right";x.fillText("পাতা - "+toBn(cur()+1),W-pad,pad+54);x.textAlign="center"}
+var y=pad+96,heads=["তারিখ","ফ্রেশ জনবল","ফ্রেশ সংগ্রহ","মেস জনবল","সিভিল","মোট জনবল","খরচের বিবরণ","ব্যালেন্স ("+tinfo()[2]+")"],xx=pad;
+heads.forEach(function(t,i){box(xx,y,cw[i],hh,PL);x.fillStyle="#111";fit(t,cw[i]-8,14,true);x.fillText(t,xx+cw[i]/2,y+hh/2);xx+=cw[i]});
+y+=hh;
+function dtxt(o){return (o.d||o.m)?(o.d?toBn(o.d):"  ")+"/"+(o.m?toBn(o.m):"  ")+"/"+yy():""}
+function cell(i,t,opt){box(opt.x,y,cw[i],rh,opt.fill||null);x.fillStyle=opt.col||"#c0201a";x.textAlign=opt.al||"center";fit(t,cw[i]-12,opt.sz||15,opt.b);x.fillText(t,opt.al==="left"?opt.x+8:opt.x+cw[i]/2,y+rh/2);x.textAlign="center"}
+var xs=[];xx=pad;cw.forEach(function(w){xs.push(xx);xx+=w});
+cell(0,dtxt(dd.open),{x:xs[0],col:"#111",fill:PL});
+for(var q=1;q<=5;q++)cell(q,"-",{x:xs[q],col:"#999",fill:PL});
+cell(6,"পূর্বের পাতার জের",{x:xs[6],col:"#111",b:true,al:"left",fill:PL});
+cell(7,fq(openBal(cur())),{x:xs[7],b:true,fill:PL,sz:16});
+y+=rh;var prev=openBal(cur());
+dd.rows.forEach(function(r){
+cell(0,dtxt(r),{x:xs[0],col:"#111"});
+["fj","fs","mj","cv"].forEach(function(k,j){cell(j+1,r[k]==null?"-":toBn(r[k]),{x:xs[j+1],col:r[k]==null?"#999":"#c0201a"})});
+cell(5,(r.mj==null&&r.cv==null)?"-":toBn((r.mj||0)+(r.cv||0)),{x:xs[5],col:(r.mj==null&&r.cv==null)?"#999":"#c0201a",b:true});
+cell(6,r.ds===CUS?(r.cu||""):(r.ds||""),{x:xs[6],col:"#111",al:"left",sz:14});
+var has=r.a!=null,add=r.ds===ADD;if(has)prev=add?prev+r.a:prev-r.a;
+box(xs[7],y,cw[7],rh,null);
+if(has){x.fillStyle="#c0201a";x.font="13px "+FF;x.textAlign="center";x.fillText((add?"(+) ":"(−) ")+fq(r.a),xs[7]+cw[7]/2,y+14);
+x.strokeStyle="#111";x.beginPath();x.moveTo(xs[7]+14,y+25);x.lineTo(xs[7]+cw[7]-14,y+25);x.stroke();
+x.fillStyle=prev<0?"#b42318":"#111";x.font="bold 16px "+FF;x.fillText(fq(prev),xs[7]+cw[7]/2,y+37)}
+y+=rh;
+});
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+var b64=cv.toDataURL("image/jpeg",0.92).split(",")[1];PVURL="data:image/jpeg;base64,"+b64;
+var bin=atob(b64),jpg=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)jpg[q]=bin.charCodeAt(q);
+var pw=Math.round(W*0.75),ph=Math.round(H*0.75),enc=new TextEncoder(),parts=[],off=[],len=0;
+function add(bb){if(typeof bb=="string")bb=enc.encode(bb);parts.push(bb);len+=bb.length}
+function obj(k,head,st){off[k]=len;add(k+" 0 obj\n"+head+"\n");if(st){add("stream\n");add(st);add("\nendstream\n")}add("endobj\n")}
+add("%PDF-1.4\n");
+obj(1,"<< /Type /Catalog /Pages 2 0 R >>");
+obj(2,"<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+obj(3,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 "+pw+" "+ph+"] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>");
+obj(4,"<< /Type /XObject /Subtype /Image /Width "+cv.width+" /Height "+cv.height+" /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length "+jpg.length+" >>",jpg);
+var cs="q "+pw+" 0 0 "+ph+" 0 0 cm /Im0 Do Q";
+obj(5,"<< /Length "+cs.length+" >>",cs);
+var xr=len;add("xref\n0 6\n0000000000 65535 f \n");
+for(var z=1;z<=5;z++)add(("0000000000"+off[z]).slice(-10)+" 00000 n \n");
+add("trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n"+xr+"\n%%EOF");
+return new Blob(parts,{type:"application/pdf"});
+}
+
+document.getElementById("pdf").onclick=function(){try{var bl=mkPdf(),u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download="fresh-"+S.type+"-"+S.y+"-p"+(cur()+1)+".pdf";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000)}catch(e){alert("PDF বানানো যায়নি।")}};
+function openFs(){try{mkPdf()}catch(e){}document.getElementById("fsi").src=PVURL;document.getElementById("fs").className="fs on"}
+function closeFs(){document.getElementById("fs").className="fs"}
+document.getElementById("pvb").onclick=openFs;
+document.getElementById("fsx").onclick=closeFs;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeFs()});
+build();
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+</script>
+</body>
+</html>

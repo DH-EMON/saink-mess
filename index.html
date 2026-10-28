@@ -29,6 +29,7 @@ h1{font-size:26px;margin:14px 4px 4px;text-align:center}
 <div class="menu">
 <a href="fresh.html"><span>১</span>অতিরিক্ত ফ্রেশ এর হিসাব</a>
 <a href="mess.html"><span>২</span>সৈনিক-মেস রেশন প্রদান</a>
+<a href="daily.html"><span>৩</span>দৈনিক রেশন খরচ হিসাব</a>
 </div>
 <div class="sw" id="sw" aria-label="রঙের থিম"></div>
 <div class="foot">Create By Ocu Emon</div>
@@ -39,7 +40,7 @@ if(TH<0||TH>=PAL.length)TH=0;
 function applyTh(){var p=PAL[TH],r=document.documentElement.style;r.setProperty("--ac",p[1]);r.setProperty("--ac2",p[2]);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=p[1];document.querySelectorAll("#sw button").forEach(function(b,i){b.className=i==TH?"on":""})}
 PAL.forEach(function(p,i){var b=document.createElement("button");b.style.background=p[1];b.setAttribute("aria-label",p[0]);b.onclick=function(){TH=i;try{localStorage.setItem("sm-theme",i)}catch(x){}applyTh()};document.getElementById("sw").appendChild(b)});
 applyTh();
-if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});["fresh.html","mess.html"].forEach(function(u){fetch(u).catch(function(){})})})}
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});["fresh.html","mess.html","daily.html"].forEach(function(u){fetch(u).catch(function(){})})})}
 </script>
 </body>
 </html>

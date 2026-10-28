@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="bn" translate="no" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>দৈনিক রেশন খরচ হিসাব</title>
+<meta name="theme-color" content="#2f6b4f">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{color-scheme:light;--bg:#f5f6fa;--card:#fff;--tx:#1b1f2a;--mu:#6b7280;--bd:#c9ced9;--ac:#2f6b4f;--ac2:#e4f1ea;--red:#c0201a;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Bengali","Nirmala UI",Arial,sans-serif;padding:14px 10px 70px}
+h1{font-size:21px;margin:6px 4px 2px;text-align:center}
+.org{text-align:center;font-weight:700;font-size:16px;margin:0 0 10px}
+.back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
+.sub{color:var(--mu);font-size:12px;text-align:center;margin:0 0 10px}
+.foot{text-align:center;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
+.ctl{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 6px;font-weight:700}
+.ctl select{font:inherit;font-size:17px;font-weight:700;color:var(--tx);background:var(--card);border:2px solid var(--ac);border-radius:10px;padding:7px 10px}
+.pgbar{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 4px;font-weight:700}
+.pgbar button{padding:8px 12px;font-size:14px}
+.pgbar button:disabled{opacity:.35}
+.pgbar select{font:inherit;font-weight:700;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 6px}
+td.cmt{min-width:180px;padding:3px 6px;text-align:left;font-size:13px}
+td.cmt input.gh{width:58px;border:1px solid var(--bd);border-radius:6px;text-align:center;color:var(--red);font-weight:800;font-size:15px;padding:6px 2px;background:var(--card)}
+td.cmt input.ct{width:100%;border:1px solid var(--bd);border-radius:8px;padding:7px 6px;background:var(--card);color:var(--tx);font-size:14px}
+.gt{font-weight:700;color:var(--bad);font-size:14px}
+.obv{font-weight:800;font-size:16px;color:var(--tx);padding:10px 2px;display:inline-block}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+table{border-collapse:collapse;min-width:100%}
+th,td{border:1px solid var(--bd);padding:0;text-align:center;white-space:nowrap;vertical-align:middle}
+th{background:var(--ac2);font-size:13px;padding:8px 6px}
+td.l,th.l{position:sticky;left:0;z-index:2;background:var(--card)}
+th.l{background:var(--ac2);z-index:3}
+td.dt{padding:2px 3px;min-width:132px}
+td.dt select{font:inherit;font-size:14px;color:var(--tx);background:transparent;border:0;padding:6px 0;width:46px}
+td.dt span{font-size:13px;color:var(--mu)}
+td input,td select.sdesc{font:inherit}
+td input.n{width:64px;border:0;background:transparent;color:var(--red);font-size:15px;text-align:center;padding:12px 2px}
+td.v{color:var(--red);font-size:15px;font-weight:700;padding:0 8px;min-width:64px}
+td.ds{min-width:200px;padding:3px 4px;text-align:left}
+td.ds select{width:100%;font-size:14px;color:var(--tx);background:transparent;border:1px solid var(--bd);border-radius:8px;padding:6px 4px}
+td.ds input{width:100%;margin-top:3px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font-size:14px;padding:6px}
+td.ds .fx{font-weight:700;font-size:14px;padding:8px 4px;display:block}
+td.bl{min-width:130px;padding:2px 6px}
+.am{display:flex;align-items:center;justify-content:center;gap:2px;color:var(--red);font-size:13px}
+.am input{width:84px;border:0;background:transparent;color:var(--red);font-size:14px;text-align:center;padding:4px 2px}
+.am .sg{font-weight:800}
+.bv{font-weight:800;font-size:16px;color:var(--tx);border-top:1px solid var(--tx);margin:0 6px;padding:2px 0 3px;min-height:22px}
+.bv.neg{color:var(--bad)}
+.ob{width:100px;border:0;background:transparent;color:var(--red);font-size:16px;font-weight:800;text-align:center;padding:10px 2px}
+input:focus,select:focus{outline:2px solid var(--ac);background:var(--ac2)}
+td.x{padding:0 2px}
+td.x button{border:0;background:none;color:var(--bad);font-size:20px;padding:4px 8px;line-height:1}
+tr.op td{background:var(--ac2)}
+tr.op td.l{background:var(--ac2)}
+.btns{display:flex;gap:8px;margin-top:12px}
+button{font:inherit;border-radius:10px;padding:12px;cursor:pointer}
+.p{flex:1;background:var(--ac);color:#fff;border:0;font-weight:600}
+.s{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.note{color:var(--mu);font-size:12px;margin-top:12px}
+.fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;background:var(--bg);display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.fs.on{display:flex}
+.fs .bar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-weight:700}
+.fs .bar button{padding:8px 16px}
+.fs .body{flex:1;overflow:auto;background:#fff}
+.fs img{display:block;width:100%;min-width:1000px}
+
+.xcard{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin:8px 0 12px}
+.xcard h2{font-size:16px;margin:0 0 8px}
+.xr{display:flex;gap:6px;align-items:center;margin:6px 0}
+.xr select{flex:1.3;min-width:0;font:inherit;font-size:15px;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px 4px}
+.xr input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--red);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px;text-align:center}
+.xr .av{flex:1.1;text-align:center;font-weight:700;font-size:14px;color:var(--tx)}
+.xr button.q{border:0;background:none;color:var(--bad);font-size:20px;padding:2px 6px}
+.xtop{display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:6px}
+.xtop input{width:110px;font:inherit;font-size:17px;font-weight:700;color:var(--red);border:2px solid var(--ac);border-radius:10px;padding:6px;text-align:center;background:var(--card)}
+.xh{display:flex;gap:6px;font-size:12px;color:var(--mu);font-weight:700;margin-top:4px}
+.xh span{flex:1;text-align:center}
+.xh span:first-child{flex:1.3}
+.xh span:last-child{flex:1.1}
+.lnk{background:none;border:0;color:var(--ac);font-weight:700;font-size:13px;padding:6px 2px;text-decoration:underline}
+#base{display:none;margin-top:8px}
+#base .xr span{flex:1.3;font-weight:700}
+.c1,.c2,.c3{position:sticky;z-index:2;background:var(--card)}
+th.c1,th.c2,th.c3{background:var(--ac2);z-index:3}
+.c1{left:0;min-width:104px;max-width:104px}
+.c2{left:104px;min-width:76px;max-width:76px}
+.c3{left:180px;min-width:70px;max-width:70px;font-weight:700;font-size:14px}
+td.c1{padding:3px 2px;vertical-align:top}
+td.c1 select{font:inherit;font-size:13px;color:var(--tx);background:transparent;border:0;padding:5px 0;width:44px}
+td.c1 span{font-size:12px;color:var(--mu)}
+td.c2{vertical-align:top;padding:2px}
+td.c2 input{width:68px;border:0;border-bottom:1px solid var(--bd);background:transparent;color:var(--red);font:inherit;font-size:15px;font-weight:700;text-align:center;padding:8px 0}
+td.rd{color:var(--red)}
+tr.rg td,tr.rf td{background:var(--ac2)}
+tr.rg td.c1,tr.rg td.c2,tr.rg td.c3,tr.rf td.c1,tr.rf td.c2,tr.rf td.c3{background:var(--ac2)}
+td.v{min-width:88px;font-size:14px;font-weight:700;padding:7px 4px;color:var(--tx)}
+td.v.rd{color:var(--red)}
+td.v.neg{color:var(--bad)}
+tr.blk td{border-top:1px solid var(--bd)}
+tr.top td{border-top:2px solid var(--tx)}
+th.it{min-width:96px;padding:6px 4px}
+th.it select{font:inherit;font-size:14px;font-weight:700;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:6px 2px;width:88px}
+th.it .dl{display:block;margin:4px auto 0;border:0;background:none;color:var(--bad);font-size:12px}
+
+.pgbar{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 8px;font-weight:700}
+.pgbar button{padding:8px 12px;font-size:14px}
+.pgbar button:disabled{opacity:.35}
+.pgbar select{font:inherit;font-weight:700;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 6px}
+td.dtx{font-size:12px;font-weight:600;padding:4px 2px;vertical-align:top}
+td.sv{font-size:13px;font-weight:700;padding:6px 3px;vertical-align:top}
+td.sc{vertical-align:top;padding:3px 2px}
+td.sc select{font:inherit;font-size:13px;color:var(--tx);background:transparent;border:0;padding:5px 0;width:44px}
+td.sc span{font-size:12px;color:var(--mu)}
+tr.tot td{background:var(--ac2);font-weight:800}
+tr.tot td.c3{background:var(--ac2)}
+.hint{color:var(--mu);font-size:12px;text-align:center;margin:0 0 8px}
+.fs .body img{margin-bottom:6px;border-bottom:4px solid var(--bg)}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← মেনু</a>
+<div class="ctl"><select id="ty" aria-label="ধরন"></select><select id="yr" aria-label="সাল"></select></div>
+<div class="pgbar"><button class="s" id="pp" aria-label="আগের পেজ">◀</button><select id="pgs" aria-label="পেজ"></select><button class="s" id="pn" aria-label="পরের পেজ">▶</button></div>
+<h1 id="h1"></h1>
+<div class="org">২৯ ডিভ লোকেটিং ব্যাটারী</div>
+<div class="xcard" id="xcard">
+<h2>অতিরিক্তের হিসাব (মাসিক গড়)</h2>
+<div class="xtop"><span>মাসের মোট জনবল</span><input id="mj" inputmode="numeric" aria-label="মাসের মোট জনবল"></div>
+<div class="xh"><span>আইটেম</span><span>মাস শেষে অতিরিক্ত</span><span>মাসিক গড়</span></div>
+<div id="xrows"></div>
+<button class="lnk" id="xadd">+ আইটেম যোগ</button>
+<button class="lnk" id="btog">মৌলিক মান দেখুন/বদলান</button>
+<div id="base"></div>
+</div>
+<div class="sub" id="sub"></div>
+<div class="wrap"><table id="tb"></table></div>
+<div class="btns"><button class="p" id="add">+ আইটেম যোগ</button><button class="s" id="pvb">প্রিভিউ</button><button class="s" id="pdf">PDF</button><button class="s" id="rst">রিসেট</button></div>
+<div class="note">ডাটা শুধু এই ফোনের ব্রাউজারে সেভ হয়। গ্রহণ = সাপ্তাহিক জনবল × মৌলিক মান; ইস্যু = দৈনিক জনবল × মৌলিক মান; অতিরিক্ত = মাসিক গড় × দৈনিক জনবল; খরচ = ইস্যু − অতিরিক্ত; মজুদ = আগের মজুদ − খরচ (প্রথম দিনে গ্রহণ − খরচ)। পেজ ২ থেকে তারিখ আগের পেজের শেষ তারিখের পর থেকে নিজে বসে; মাস শেষ (২৮/২৯/৩০/৩১) হলে এরপর আর কোনো তারিখ বা পেজ হয় না। রিসেট শুধু এই পেজের লেখা মুছে।</div>
+<div class="foot">Create By Ocu Emon</div>
+<div class="fs" id="fs"><div class="bar"><span>PDF প্রিভিউ (সব পেজ)</span><button class="s" id="fsx">বন্ধ ×</button></div><div class="body" id="fsb"></div></div>
+<script>
+var PAL=[["#2f6b4f","#e4f1ea"],["#305496","#e8eefb"],["#b42318","#fdeceb"],["#6b3fa0","#f1eaf9"],["#c25a00","#fdf0e3"],["#374151","#eceef2"]];
+var PL="#e4f1ea",AC="#2f6b4f";
+try{var th=+localStorage.getItem("sm-theme")||0;if(th>=0&&th<PAL.length){var rs=document.documentElement.style;rs.setProperty("--ac",PAL[th][0]);rs.setProperty("--ac2",PAL[th][1]);PL=PAL[th][1];AC=PAL[th][0]}}catch(x){}
+
+
+
+var BD="০১২৩৪৫৬৭৮৯";
+function toBn(s){return String(s).replace(/[0-9]/g,function(d){return BD.charAt(+d)})}
+function toEn(s){return String(s).replace(/[০-৯]/g,function(d){return BD.indexOf(d)})}
+function num(v){var n=parseFloat(toEn(v));return isNaN(n)?0:n}
+function r3(x){return Math.round(x*1000)/1000}
+function f3(x){return toBn(r3(x).toFixed(3))}
+function rf(x){var s=parseFloat((+x||0).toFixed(6)).toString();return toBn(s)}
+var NP=9,SUMP=9;
+var TYPES=[["dry","শুকনা রসদ"],["spice","মসলা"]];
+var BASE0={dry:[["চাউল",0.483],["আটা",0.112],["চিনি",0.063],["তেল",0.085],["ডাল",0.085],["চা",0.007],["গুড়া দুধ",0.028],["লবণ",0.021]],
+spice:[["মরিচ",0.00441],["হলুদ",0.00483],["রসুন",0.00378],["আদা",0.00357],["জিরা",0.00105],["ধনিয়া",0.00147],["দারুচিনি",0.00063],["এলাচ",0.00042],["লবঙ্গ",0.00042],["তেজপাতা",0.00021],["পাঁচফোড়ন",0.00021]]};
+function blankPage(){var days=[];for(var i=0;i<7;i++)days.push({d:"",m:"",j:null});return{g:{d:"",m:"",j:null},days:days}}
+function blankSum(){var r=[];for(var i=0;i<NP;i++)r.push({d:"",m:""});return{rows:r}}
+function blankT(t){var base={},cols=[],ex=[],pages=[];BASE0[t].forEach(function(p){base[p[0]]=p[1];cols.push(p[0]);ex.push({n:p[0],q:null})});for(var i=0;i<NP;i++)pages.push(blankPage());return{cols:cols,base:base,pages:pages,ex:{mj:null,rows:ex},sum:blankSum()}}
+function fresh(){var o={type:"dry",y:"2026",pg:0,t:{}};TYPES.forEach(function(t){o.t[t[0]]=blankT(t[0])});return o}
+var KEY="sm-daily1",S=null;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(x){}
+if(S&&S.t)TYPES.forEach(function(t){var T=S.t[t[0]];if(T&&T.days&&!T.pages){T.pages=[{g:T.g,days:T.days}];for(var i=1;i<NP;i++)T.pages.push(blankPage());delete T.g;delete T.days}if(T&&!T.sum)T.sum=blankSum()});
+if(S&&S.pg===undefined)S.pg=0;
+if(!S||!S.t||!TYPES.every(function(t){var T=S.t[t[0]];return T&&T.cols&&T.base&&T.pages&&T.pages.length===NP&&T.ex&&T.ex.rows&&T.sum}))S=fresh();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(x){}}
+function TT(){return S.t[S.type]}
+function tname(){for(var i=0;i<TYPES.length;i++)if(TYPES[i][0]===S.type)return TYPES[i][1];return ""}
+var MN=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
+var DOPT='<option value="">দিন</option>',MOPT='<option value="">মাস</option>';
+for(var i=1;i<=31;i++)DOPT+='<option value="'+i+'">'+toBn(i)+'</option>';
+for(var j=0;j<12;j++)MOPT+='<option value="'+(j+1)+'">'+toBn(j+1)+'</option>';
+function yy(){return toBn(("0"+(S.y%100)).slice(-2))}
+function ttl(){return "দৈনিক রেশন খরচ হিসাব - "+toBn(S.y)+" ("+tname()+")"}
+function names(){return Object.keys(TT().base)}
+function nopts(sel){var h="";names().forEach(function(n){h+='<option value="'+n+'"'+(n===sel?" selected":"")+'>'+n+'</option>'});return h}
+function avg(name){var e=TT().ex,mj=e.mj;if(!mj)return 0;var q=0;e.rows.forEach(function(r){if(r.n===name&&r.q!=null)q+=r.q});return q/mj}
+function dtxt(o){return (o&&(o.d||o.m))?(o.d?toBn(o.d):"  ")+"/"+(o.m?toBn(o.m):"  ")+"/"+yy():""}
+function addD(d,m,n){var dt=new Date(+S.y,m-1,+d+n);return{d:String(dt.getDate()),m:String(dt.getMonth()+1)}}
+function dim(m){return new Date(+S.y,+m,0).getDate()}
+function pageDates(T,p){
+var blank={d:"",m:""},B7=[blank,blank,blank,blank,blank,blank,blank],F7=[false,false,false,false,false,false,false],days,g;
+if(p===0){var pg=T.pages[0];days=pg.days;g=pg.g}
+else{var pv=pageDates(T,p-1);
+if(!pv.active)return{g:blank,days:B7,hid:[true,true,true,true,true,true,true],last:-1,active:false};
+if(pv.last<0)return{g:blank,days:B7,hid:F7,last:-1,active:true};
+var L=pv.days[pv.last];
+if(+L.d===dim(L.m))return{g:blank,days:B7,hid:[true,true,true,true,true,true,true],last:-1,active:false};
+var a=addD(L.d,L.m,1);g=a;days=[];for(var k=0;k<7;k++)days.push(addD(a.d,a.m,k))}
+var hid=F7.slice();
+if(days[0].d&&days[0].m){var cut=false;for(var k2=0;k2<7;k2++){if(cut)hid[k2]=true;else if(days[k2].d&&days[k2].m&&+days[k2].d===dim(days[k2].m))cut=true}}
+var out=days.map(function(dd,k){return hid[k]?blank:dd}),last=-1;
+for(var q=0;q<7;q++)if(!hid[q]&&out[q].d&&out[q].m)last=q;
+return{g:g,days:out,hid:hid,last:last,active:true}}
+function same(a,b){return a&&b&&a.d&&a.m&&+a.d===+b.d&&+a.m===+b.m}
+function used(T,p){var pg=T.pages[p],hid=pageDates(T,p).hid;return pg.g.j!=null||pg.days.some(function(d,k){return!hid[k]&&d.j!=null})}
+function findPage(T,eff){if(!eff||!eff.d||!eff.m)return -1;for(var p=0;p<NP;p++){var pdx=pageDates(T,p);if(!pdx.active)continue;var ds=pdx.days;if(same(pdx.g,eff))return p;for(var k=0;k<7;k++)if(same(ds[k],eff))return p}return -1}
+function dayCount(a,b){var x=new Date(+S.y,a.m-1,+a.d),y=new Date(+S.y,b.m-1,+b.d);return Math.round((y-x)/864e5)+1}
+var Tb=document.getElementById("tb"),tySel=document.getElementById("ty"),yrSel=document.getElementById("yr"),pgs=document.getElementById("pgs");
+function sumTitle(){var m=pageDates(TT(),0).days[0].m;return "সামারী "+(m?MN[m-1]+" - ":"- ")+toBn(S.y)}
+function head(){document.getElementById("h1").textContent=S.pg===SUMP?sumTitle():ttl()}
+function dsel(id){return '<select class="sd" data-o="'+id+'" aria-label="দিন">'+DOPT+'</select><span>/</span><select class="sm" data-o="'+id+'" aria-label="মাস">'+MOPT+'</select><span>/'+yy()+'</span>'}
+function dobj(id){var pg=TT().pages[0];return id==="g"?pg.g:pg.days[+id]}
+var DAYR=[["ইস্যু","i",""],["খরচ","x",""],["অতিরিক্ত","e",""],["মজুদ","s","rd"]];
+function compute(T,p){var out=[],pg=T.pages[p],hid=pageDates(T,p).hid;
+T.cols.forEach(function(name){var B=T.base[name]||0,av=avg(name),wj=pg.g.j,G=wj==null?null:r3(wj*B),prev=G==null?0:G,col={g:G,d:[]};
+pg.days.forEach(function(d,k){var dj=hid[k]?null:d.j;if(dj==null){col.d.push(null);return}
+var iss=r3(dj*B),ext=r3(av*dj),cost=r3(iss-ext);prev=r3(prev-cost);col.d.push({i:iss,x:cost,e:ext,s:prev})});
+col.j=(wj==null&&col.d.every(function(z){return z==null}))?null:prev;out.push(col)});
+return out}
+function buildWeek(){
+var T=TT(),p=S.pg,pd=pageDates(T,p),pg=T.pages[p],n=T.cols.length,first=p===0;
+function dc(o,id){return first?dsel(id):'<span class="dtx">'+dtxt(o)+'</span>'}
+var h='<tr><th class="c1">তারিখ</th><th class="c2">জনবল</th><th class="c3">বিবরণ</th>';
+T.cols.forEach(function(c,i){h+='<th class="it"><select class="ci" data-c="'+i+'" aria-label="আইটেম">'+nopts(c)+'</select><button class="dl" data-c="'+i+'">× মুছুন</button></th>'});
+h+='</tr><tr class="rg"><td class="c1">'+dc(pd.g,"g")+'</td><td class="c2"><input class="wj" inputmode="numeric" placeholder="সাপ্তাহিক" aria-label="সাপ্তাহিক জনবল"></td><td class="c3 rd">গ্রহণ</td>';
+for(var c=0;c<n;c++)h+='<td class="v rd" id="g'+c+'"></td>';
+h+='</tr>';
+for(var k=0;k<7;k++){
+if(pd.hid[k])continue;
+DAYR.forEach(function(r,ri){
+h+='<tr class="'+(ri===0?"blk":"")+'">';
+if(ri===0)h+='<td class="c1" rowspan="4">'+dc(pd.days[k],k)+'</td><td class="c2" rowspan="4"><input class="dj" data-k="'+k+'" inputmode="numeric" placeholder="দৈনিক" aria-label="দৈনিক জনবল"></td>';
+h+='<td class="c3 '+r[2]+'">'+r[0]+'</td>';
+for(var c=0;c<n;c++)h+='<td class="v '+r[2]+'" id="'+r[1]+k+'_'+c+'"></td>';
+h+='</tr>';
+});
+}
+h+='<tr class="rf top"><td class="c1" id="fd"></td><td class="c2" style="vertical-align:middle;font-weight:700;font-size:13px">JQ স্টোর</td><td class="c3 rd">জমা</td>';
+for(var c2=0;c2<n;c2++)h+='<td class="v rd" id="j'+c2+'"></td>';
+h+='</tr>';
+Tb.innerHTML=h;
+if(first){
+Tb.querySelectorAll("select.sd").forEach(function(e){var o=dobj(e.dataset.o);e.value=o.d;e.onchange=function(){o.d=this.value;dchg(e.dataset.o)}});
+Tb.querySelectorAll("select.sm").forEach(function(e){var o=dobj(e.dataset.o);e.value=o.m;e.onchange=function(){o.m=this.value;dchg(e.dataset.o)}})}
+var wj=Tb.querySelector(".wj");wj.value=pg.g.j==null?"":toBn(pg.g.j);
+wj.oninput=function(){var q=toBn(this.value.replace(/[^0-9০-৯]/g,""));if(q!==this.value)this.value=q;pg.g.j=q===""?null:parseInt(toEn(q));calc();save()};
+Tb.querySelectorAll(".dj").forEach(function(e){var k=+e.dataset.k,d=pg.days[k];e.value=d.j==null?"":toBn(d.j);
+e.oninput=function(){var q=toBn(this.value.replace(/[^0-9০-৯]/g,""));if(q!==this.value)this.value=q;d.j=q===""?null:parseInt(toEn(q));calc();save()}});
+Tb.querySelectorAll("input").forEach(function(e){e.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)}});
+Tb.querySelectorAll("select.ci").forEach(function(e){var i=+e.dataset.c;e.onchange=function(){T.cols[i]=this.value;calc();save()}});
+Tb.querySelectorAll(".dl").forEach(function(b){b.onclick=function(){var i=+this.dataset.c;if(T.cols.length<2){alert("কমপক্ষে একটা আইটেম থাকতে হবে।");return}if(confirm("\""+T.cols[i]+"\" কলাম মুছবেন? (সব পেজ থেকে সরবে)")){T.cols.splice(i,1);save();build()}}});
+calc();
+}
+function dchg(id){var T=TT(),pg=T.pages[0];
+if(id==="0"&&pg.days[0].d&&pg.days[0].m){for(var k=1;k<7;k++){var o=pg.days[k],a=addD(pg.days[0].d,pg.days[0].m,k);o.d=a.d;o.m=a.m}
+Tb.querySelectorAll("select.sd").forEach(function(e){e.value=dobj(e.dataset.o).d});Tb.querySelectorAll("select.sm").forEach(function(e){e.value=dobj(e.dataset.o).m})}
+save();updPg();build()}
+function setT(id,v){var e=document.getElementById(id);if(!e)return;e.textContent=v==null?"":f3(v);e.className=e.className.replace(/ neg/g,"")+(v!=null&&v<0?" neg":"")}
+function calc(){if(S.pg===SUMP)return;var T=TT(),res=compute(T,S.pg);
+res.forEach(function(col,c){setT("g"+c,col.g);col.d.forEach(function(z,k){setT("i"+k+"_"+c,z&&z.i);setT("x"+k+"_"+c,z&&z.x);setT("e"+k+"_"+c,z&&z.e);setT("s"+k+"_"+c,z&&z.s)});setT("j"+c,col.j)});
+var pdc=pageDates(T,S.pg),fd=document.getElementById("fd");if(fd)fd.textContent=pdc.last>=0?dtxt(pdc.days[pdc.last]):"";
+document.querySelectorAll("#xrows .av").forEach(function(e){var r=T.ex.rows[+e.dataset.r];e.textContent=(r.q==null||!T.ex.mj)?"-":rf(r.q/T.ex.mj)})}
+function sumBlocks(T){var out=[];
+for(var r=0;r<NP;r++){if(!pageDates(T,r).active)continue;var ov=T.sum.rows[r],pdr=pageDates(T,r),eff=(ov.d&&ov.m)?ov:((pdr.g.d&&pdr.g.m)?pdr.g:pdr.days[0]),p=findPage(T,eff),o={r:r,eff:eff,p:p,ok:false};
+if(p>=0&&used(T,p)){var dts=pageDates(T,p);if(dts.last>=0){o.ok=true;o.res=compute(T,p);o.from=dts.days[0];o.to=dts.days[dts.last];o.days=dayCount(o.from,o.to);o.wj=T.pages[p].g.j}}
+out.push(o)}
+return out}
+function sv(c){return{g:c.g,j:c.j,x:(c.g==null||c.j==null)?null:r3(c.g-c.j)}}
+function buildSum(){
+var T=TT(),n=T.cols.length,bl=sumBlocks(T),h='<tr><th class="c1">ইস্যু তারিখ</th><th>হইতে</th><th>পর্যন্ত</th><th>মোট<br>দিন</th><th>মোট<br>জনবল</th><th>বিবরণ</th>';
+T.cols.forEach(function(c){h+='<th class="it" style="min-width:90px">'+c+'</th>'});
+h+='</tr>';
+var tg=[],tx=[],tj=[];for(var c=0;c<n;c++){tg.push(null);tx.push(null);tj.push(null)}
+bl.forEach(function(b){
+['গ্রহণ','খরচ','মজুদ'].forEach(function(lab,ri){
+h+='<tr class="'+(ri===0?"blk":"")+'">';
+if(ri===0){h+='<td class="c1 sc" rowspan="3">'+dsel(b.r).replace(/data-o="/g,'data-s="')+'</td><td rowspan="3" class="sv">'+(b.ok?dtxt(b.from):"")+'</td><td rowspan="3" class="sv">'+(b.ok?dtxt(b.to):"")+'</td><td rowspan="3" class="sv">'+(b.ok?toBn(b.days):"")+'</td><td rowspan="3" class="sv" style="color:var(--red)">'+(b.ok&&b.wj!=null?toBn(b.wj):"")+'</td>'}
+h+='<td class="sv '+(ri!==1?"rd":"")+'" style="font-weight:800;vertical-align:middle">'+lab+'</td>';
+for(var c=0;c<n;c++){var v=null;if(b.ok){var s=sv(b.res[c]);v=ri===0?s.g:ri===1?s.x:s.j}
+h+='<td class="v '+(ri!==1?"rd":"")+'">'+(v==null?"":f3(v))+'</td>';
+if(b.ok){var s2=sv(b.res[c]);if(ri===0&&s2.g!=null)tg[c]=r3((tg[c]||0)+s2.g);if(ri===1&&s2.x!=null)tx[c]=r3((tx[c]||0)+s2.x);if(ri===2&&s2.j!=null)tj[c]=r3((tj[c]||0)+s2.j)}}
+h+='</tr>'});
+});
+for(var c3=0;c3<n;c3++)tj[c3]=tg[c3]==null?null:r3(tg[c3]-(tx[c3]||0));
+[['মোট গ্রহণ',tg],['মোট খরচ',tx],['মোট মজুদ',tj]].forEach(function(r,i){h+='<tr class="tot'+(i===0?" top":"")+'"><td colspan="6" style="text-align:right;padding-right:10px">'+r[0]+' =</td>';for(var c=0;c<n;c++)h+='<td class="v '+(i!==1?"rd":"")+'">'+(r[1][c]==null?"":f3(r[1][c]))+'</td>';h+='</tr>'});
+Tb.innerHTML=h;
+Tb.querySelectorAll("select.sd").forEach(function(e){var r=+e.dataset.s,b=bl[r];e.value=b.eff.d;e.onchange=function(){var ov=T.sum.rows[r];ov.d=this.value;ov.m=Tb.querySelector('select.sm[data-s="'+r+'"]').value;save();build()}});
+Tb.querySelectorAll("select.sm").forEach(function(e){var r=+e.dataset.s,b=bl[r];e.value=b.eff.m;e.onchange=function(){var ov=T.sum.rows[r];ov.m=this.value;ov.d=Tb.querySelector('select.sd[data-s="'+r+'"]').value;save();build()}});
+}
+function build(){
+var isSum=S.pg===SUMP;
+document.getElementById("xcard").style.display=isSum?"none":"block";
+document.getElementById("add").style.display=isSum?"none":"block";
+document.getElementById("sub").textContent=isSum?"ইস্যু তারিখ বাছলে ঐ তারিখের পেজের হইতে, পর্যন্ত, মোট দিন, জনবল, গ্রহণ, খরচ আর মজুদ নিজে আসে · গ্রহণ = পেজের গ্রহণ · মজুদ = পেজের জমা · খরচ = গ্রহণ − মজুদ · মোট মজুদ = মোট গ্রহণ − মোট খরচ":"ডানে-বামে সরিয়ে দেখুন · লাল ঘরে বা তারিখে ট্যাপ করে লিখুন · বাকি সব নিজে হিসাব হয়";
+head();
+if(isSum)buildSum();else buildWeek();
+}
+function xbuild(){var T=TT(),h="";
+T.ex.rows.forEach(function(r,i){h+='<div class="xr"><select class="xn" data-r="'+i+'" aria-label="আইটেম">'+nopts(r.n)+'</select><input class="xq" data-r="'+i+'" inputmode="decimal" placeholder="পরিমাণ" aria-label="পরিমাণ"><div class="av" data-r="'+i+'"></div><button class="q" data-r="'+i+'" aria-label="মুছুন">×</button></div>'});
+document.getElementById("xrows").innerHTML=h;
+var mj=document.getElementById("mj");mj.value=T.ex.mj==null?"":toBn(T.ex.mj);
+mj.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯]/g,""));if(p!==this.value)this.value=p;T.ex.mj=p===""?null:parseInt(toEn(p));calc();save()};
+document.querySelectorAll("select.xn").forEach(function(e){var r=T.ex.rows[+e.dataset.r];e.onchange=function(){r.n=this.value;calc();save()}});
+document.querySelectorAll("input.xq").forEach(function(e){var r=T.ex.rows[+e.dataset.r];e.value=r.q==null?"":rf(r.q);
+e.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯.]/g,""));if(p!==this.value)this.value=p;r.q=p===""?null:num(p);calc();save()};
+e.onfocus=function(){var t=this;setTimeout(function(){try{if(document.activeElement===t)t.select()}catch(x){}},30)};
+e.onblur=function(){this.value=r.q==null?"":rf(r.q)}});
+document.querySelectorAll("#xrows button.q").forEach(function(b){b.onclick=function(){T.ex.rows.splice(+this.dataset.r,1);save();xbuild();calc()}});
+var bh="";names().forEach(function(n){bh+='<div class="xr"><span>'+n+'</span><input class="bv" data-n="'+n+'" inputmode="decimal" aria-label="মৌলিক মান"></div>'});
+document.getElementById("base").innerHTML=bh;
+document.querySelectorAll("input.bv").forEach(function(e){var n=e.dataset.n;e.value=rf(T.base[n]);e.oninput=function(){var p=toBn(this.value.replace(/[^0-9০-৯.]/g,""));if(p!==this.value)this.value=p;T.base[n]=num(p);calc();save()};e.onblur=function(){this.value=rf(T.base[n])}});
+calc()}
+document.getElementById("xadd").onclick=function(){var T=TT(),nm=names(),u={};T.ex.rows.forEach(function(r){u[r.n]=1});var pick=nm.filter(function(n){return!u[n]})[0]||nm[0];T.ex.rows.push({n:pick,q:null});save();xbuild()};
+document.getElementById("btog").onclick=function(){var b=document.getElementById("base");b.style.display=b.style.display==="block"?"none":"block"};
+(function(){var h="";TYPES.forEach(function(t){h+='<option value="'+t[0]+'">'+t[1]+'</option>'});tySel.innerHTML=h;h="";for(var y=2020;y<=2045;y++)h+='<option value="'+y+'">'+toBn(y)+'</option>';yrSel.innerHTML=h;
+})();
+function plist(){var T=TT(),l=[];for(var i=0;i<NP;i++)if(pageDates(T,i).active)l.push(i);l.push(SUMP);return l}
+function updPg(){var l=plist();if(l.indexOf(S.pg)<0)S.pg=0;var h="";l.forEach(function(i){h+='<option value="'+i+'">'+(i===SUMP?"সামারী":"পেজ "+toBn(i+1))+'</option>'});pgs.innerHTML=h;pgs.value=S.pg;var ix=l.indexOf(S.pg);document.getElementById("pp").disabled=ix===0;document.getElementById("pn").disabled=ix===l.length-1}
+function goPg(i){S.pg=i;save();updPg();build()}
+pgs.onchange=function(){goPg(+this.value)};
+document.getElementById("pp").onclick=function(){var l=plist();goPg(l[l.indexOf(S.pg)-1])};
+document.getElementById("pn").onclick=function(){var l=plist();goPg(l[l.indexOf(S.pg)+1])};
+tySel.value=S.type;yrSel.value=S.y;updPg();
+tySel.onchange=function(){S.type=this.value;save();document.getElementById("base").style.display="none";updPg();xbuild();build()};
+yrSel.onchange=function(){S.y=this.value;save();updPg();build()};
+document.getElementById("add").onclick=function(){var T=TT(),nm=names(),u={};T.cols.forEach(function(c){u[c]=1});var pick=nm.filter(function(n){return!u[n]})[0]||nm[0];T.cols.push(pick);save();build();document.querySelector(".wrap").scrollLeft=99999};
+document.getElementById("rst").onclick=function(){var T=TT();
+if(S.pg===SUMP){if(confirm("সামারীর ইস্যু তারিখ নিজে-বসা অবস্থায় ফিরিয়ে আনবেন?")){T.sum=blankSum();save();build()}return}
+if(confirm("\"পেজ "+toBn(S.pg+1)+"\" এর তারিখ আর জনবল মুছে ফাঁকা করবেন? (অতিরিক্তের হিসাব থাকবে)")){T.pages[S.pg]=blankPage();save();updPg();build()}};
+var PVU=[];
+function ctxPack(W,H){var sc=2,cv=document.createElement("canvas");cv.width=W*sc;cv.height=H*sc;var x=cv.getContext("2d");x.scale(sc,sc);x.fillStyle="#fff";x.fillRect(0,0,W,H);x.textBaseline="middle";
+var FF='"Noto Sans Bengali","Nirmala UI","Segoe UI",system-ui,Arial,sans-serif';
+function fit(t,mw,size,bold){var s=size;for(;;){x.font=(bold?"bold ":"")+s+"px "+FF;if(x.measureText(t).width<=mw||s<=8)break;s--}}
+function box(a,b,w,h,fill){if(fill){x.fillStyle=fill;x.fillRect(a,b,w,h)}x.strokeStyle="#777";x.lineWidth=1;x.strokeRect(a,b,w,h)}
+function txt(t,cx,cy,w,col,bold,sz,al){if(t==null||t==="")return;x.fillStyle=col;x.textAlign=al||"center";fit(t,w-10,sz||14,bold);x.fillText(t,al==="left"?cx+6:cx,cy)}
+return{cv:cv,x:x,FF:FF,fit:fit,box:box,txt:txt}}
+var RED="#c0201a",BLK="#111";
+function drawWeek(p){
+var T=TT(),res=compute(T,p),pd=pageDates(T,p),pg=T.pages[p],n=T.cols.length,pad=16,c1=100,c2=80,c3=74,cw=94,rh=30,hh=52,W=pad*2+c1+c2+c3+n*cw,vis=pd.hid.filter(function(h){return!h}).length,rows=2+4*vis;
+var H=pad*2+90+hh+rows*rh+50,C=ctxPack(W,H),x=C.x,box=C.box,txt=C.txt,fit=C.fit,FF=C.FF;
+x.textAlign="center";x.fillStyle=BLK;fit(ttl(),W-2*pad-90,22,true);x.fillText(ttl(),W/2,pad+18);
+x.font="bold 17px "+FF;x.fillText("২৯ ডিভ লোকেটিং ব্যাটারী",W/2,pad+52);
+x.textAlign="right";x.font="bold 15px "+FF;x.fillText("পেজ - "+toBn(p+1),W-pad,pad+18);
+var y=pad+90,xi=pad+c1+c2+c3;
+box(pad,y,c1,hh,PL);txt("তারিখ",pad+c1/2,y+hh/2,c1,BLK,true);
+box(pad+c1,y,c2,hh,PL);txt("জনবল",pad+c1+c2/2,y+hh/2,c2,BLK,true);
+box(pad+c1+c2,y,c3,hh,PL);txt("বিবরণ",pad+c1+c2+c3/2,y+hh/2,c3,BLK,true);
+T.cols.forEach(function(nm,i){box(xi+i*cw,y,cw,hh,PL);txt(nm,xi+i*cw+cw/2,y+hh/2,cw,BLK,true,15)});
+y+=hh;
+function rowCells(yy,label,labelRed,vals,fill){box(pad+c1+c2,yy,c3,rh,fill);txt(label,pad+c1+c2+c3/2,yy+rh/2,c3,labelRed?RED:BLK,true,14);
+vals.forEach(function(v,i){box(xi+i*cw,yy,cw,rh,fill);if(v!=null)txt(f3(v),xi+i*cw+cw/2,yy+rh/2,cw,v<0?"#b42318":(labelRed?RED:BLK),labelRed,14)})}
+box(pad,y,c1,rh,PL);txt(dtxt(pd.g),pad+c1/2,y+rh/2,c1,BLK,false,13);
+box(pad+c1,y,c2,rh,PL);txt(pg.g.j==null?"":toBn(pg.g.j),pad+c1+c2/2,y+rh/2,c2,RED,true,14);
+rowCells(y,"গ্রহণ",true,res.map(function(c){return c.g}),PL);y+=rh;
+var labs=[["ইস্যু","i",false],["খরচ","x",false],["অতিরিক্ত","e",false],["মজুদ","s",true]];
+pg.days.forEach(function(d,k){
+if(pd.hid[k])return;
+box(pad,y,c1,rh*4,null);txt(dtxt(pd.days[k]),pad+c1/2,y+rh/2,c1,BLK,false,13);
+box(pad+c1,y,c2,rh*4,null);txt(d.j==null?"":toBn(d.j),pad+c1+c2/2,y+rh/2,c2,RED,true,14);
+labs.forEach(function(L,ri){rowCells(y+ri*rh,L[0],L[2],res.map(function(c){var z=c.d[k];return z?z[L[1]]:null}),null)});
+y+=rh*4});
+box(pad,y,c1,rh,PL);txt(pd.last>=0?dtxt(pd.days[pd.last]):"",pad+c1/2,y+rh/2,c1,BLK,false,13);
+box(pad+c1,y,c2,rh,PL);txt("JQ স্টোর",pad+c1+c2/2,y+rh/2,c2,BLK,true,13);
+rowCells(y,"জমা",true,res.map(function(c){return c.j}),PL);y+=rh;
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+return C.cv}
+function drawSum(){
+var T=TT(),n=T.cols.length,bl=sumBlocks(T).filter(function(b){return b.ok}),pad=16,cs=[96,76,76,54,70,70],cw=94,rh=30,hh=52,xi=pad+cs.reduce(function(a,b){return a+b},0),W=xi+n*cw+pad;
+var H=pad*2+90+hh+(bl.length*3+3)*rh+50,C=ctxPack(W,H),x=C.x,box=C.box,txt=C.txt,fit=C.fit,FF=C.FF;
+x.textAlign="center";x.fillStyle=BLK;fit(sumTitle(),W-2*pad,22,true);x.fillText(sumTitle(),W/2,pad+18);
+x.font="bold 17px "+FF;x.fillText("২৯ ডিভ লোকেটিং ব্যাটারী",W/2,pad+52);
+x.textAlign="right";x.font="bold 15px "+FF;x.fillText(tname(),W-pad,pad+18);
+var y=pad+90,heads=["ইস্যু তারিখ","হইতে","পর্যন্ত","মোট দিন","মোট জনবল","বিবরণ"],xx=pad;
+heads.forEach(function(t,i){box(xx,y,cs[i],hh,PL);txt(t,xx+cs[i]/2,y+hh/2,cs[i],BLK,true,13);xx+=cs[i]});
+T.cols.forEach(function(nm,i){box(xi+i*cw,y,cw,hh,PL);txt(nm,xi+i*cw+cw/2,y+hh/2,cw,BLK,true,15)});
+y+=hh;
+var tg=[],tx=[],tj=[];for(var c=0;c<n;c++){tg.push(null);tx.push(null);tj.push(null)}
+bl.forEach(function(b){
+var xs=[];xx=pad;cs.forEach(function(w){xs.push(xx);xx+=w});
+[dtxt(b.eff),dtxt(b.from),dtxt(b.to),toBn(b.days),b.wj==null?"":toBn(b.wj)].forEach(function(t,i){box(xs[i],y,cs[i],rh*3,null);txt(t,xs[i]+cs[i]/2,y+rh/2,cs[i],i===4?RED:BLK,i===4,13)});
+["গ্রহণ","খরচ","মজুদ"].forEach(function(lab,ri){var yy=y+ri*rh,red=ri!==1;box(xs[5],yy,cs[5],rh,null);txt(lab,xs[5]+cs[5]/2,yy+rh/2,cs[5],red?RED:BLK,true,14);
+for(var c=0;c<n;c++){var s=sv(b.res[c]),v=ri===0?s.g:ri===1?s.x:s.j;box(xi+c*cw,yy,cw,rh,null);if(v!=null)txt(f3(v),xi+c*cw+cw/2,yy+rh/2,cw,v<0?"#b42318":(red?RED:BLK),red,14);
+if(ri===0&&s.g!=null)tg[c]=r3((tg[c]||0)+s.g);if(ri===1&&s.x!=null)tx[c]=r3((tx[c]||0)+s.x);if(ri===2&&s.j!=null)tj[c]=r3((tj[c]||0)+s.j)}});
+y+=rh*3});
+for(var c3=0;c3<n;c3++)tj[c3]=tg[c3]==null?null:r3(tg[c3]-(tx[c3]||0));
+[["মোট গ্রহণ =",tg,true],["মোট খরচ =",tx,false],["মোট মজুদ =",tj,true]].forEach(function(r){box(pad,y,xi-pad,rh,PL);txt(r[0],xi-10,y+rh/2,xi-pad,r[2]?RED:BLK,true,14,"right");for(var c=0;c<n;c++){box(xi+c*cw,y,cw,rh,PL);if(r[1][c]!=null)txt(f3(r[1][c]),xi+c*cw+cw/2,y+rh/2,cw,r[2]?RED:BLK,true,14)}y+=rh});
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+return C.cv}
+function allCanvases(){var T=TT(),out=[];for(var p=0;p<NP;p++)if(pageDates(T,p).active&&(p===0||used(T,p)))out.push(drawWeek(p));out.push(drawSum());return out}
+function pdfFrom(cvs){
+var enc=new TextEncoder(),parts=[],off=[],len=0,N=cvs.length;
+function add(b){if(typeof b=="string")b=enc.encode(b);parts.push(b);len+=b.length}
+function obj(k,head,st){off[k]=len;add(k+" 0 obj\n"+head+"\n");if(st){add("stream\n");add(st);add("\nendstream\n")}add("endobj\n")}
+add("%PDF-1.4\n");
+obj(1,"<< /Type /Catalog /Pages 2 0 R >>");
+var kids=[];for(var i=0;i<N;i++)kids.push((3+3*i)+" 0 R");
+obj(2,"<< /Type /Pages /Kids ["+kids.join(" ")+"] /Count "+N+" >>");
+cvs.forEach(function(cv,i){
+var b64=cv.toDataURL("image/jpeg",0.92).split(",")[1],bin=atob(b64),jpg=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)jpg[q]=bin.charCodeAt(q);
+var pw=Math.round(cv.width/2*0.75),ph=Math.round(cv.height/2*0.75),pid=3+3*i,cid=4+3*i,iid=5+3*i,cs="q "+pw+" 0 0 "+ph+" 0 0 cm /Im0 Do Q";
+obj(pid,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 "+pw+" "+ph+"] /Resources << /XObject << /Im0 "+iid+" 0 R >> >> /Contents "+cid+" 0 R >>");
+obj(cid,"<< /Length "+cs.length+" >>",cs);
+obj(iid,"<< /Type /XObject /Subtype /Image /Width "+cv.width+" /Height "+cv.height+" /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length "+jpg.length+" >>",jpg)});
+var total=3*N+3,xr=len;add("xref\n0 "+total+"\n0000000000 65535 f \n");
+for(var z=1;z<total;z++)add(("0000000000"+off[z]).slice(-10)+" 00000 n \n");
+add("trailer\n<< /Size "+total+" /Root 1 0 R >>\nstartxref\n"+xr+"\n%%EOF");
+return new Blob(parts,{type:"application/pdf"})}
+document.getElementById("pdf").onclick=function(){try{var bl=pdfFrom(allCanvases()),u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download="daily-"+S.type+"-"+S.y+".pdf";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000)}catch(e){alert("PDF বানানো যায়নি।")}};
+function openFs(){var b=document.getElementById("fsb");b.innerHTML="";try{allCanvases().forEach(function(cv){var im=document.createElement("img");im.src=cv.toDataURL("image/jpeg",0.9);b.appendChild(im)})}catch(e){}document.getElementById("fs").className="fs on"}
+function closeFs(){document.getElementById("fs").className="fs"}
+document.getElementById("pvb").onclick=openFs;
+document.getElementById("fsx").onclick=closeFs;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeFs()});
+xbuild();build();
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+</script>
+</body>
+</html>

@@ -279,7 +279,8 @@ if(b.ok){var s2=sv(b.res[c]);if(ri===0&&s2.g!=null)tg[c]=r3((tg[c]||0)+s2.g);if(
 h+='</tr>'});
 });
 for(var c3=0;c3<n;c3++)tj[c3]=tg[c3]==null?null:r3(tg[c3]-(tx[c3]||0));
-[['মোট গ্রহণ',tg],['মোট খরচ',tx],['মোট মজুদ',tj]].forEach(function(r,i){h+='<tr class="tot'+(i===0?" top":"")+'"><td colspan="6" style="text-align:right;padding-right:10px">'+r[0]+' =</td>';for(var c=0;c<n;c++)h+='<td class="v '+(i!==1?"rd":"")+'">'+(r[1][c]==null?"":f3(r[1][c]))+'</td>';h+='</tr>'});
+var tj2=tg.map(function(g,c){return g==null?null:r3(g-(tx[c]||0))});
+[['মোট গ্রহণ',tg],['মোট খরচ',tx],['মোট মজুদ',tj2]].forEach(function(r,i){h+='<tr class="tot'+(i===0?" top":"")+'"><td colspan="6" style="text-align:right;padding-right:10px">'+r[0]+' =</td>';for(var c=0;c<n;c++)h+='<td class="v '+(i!==1?"rd":"")+'">'+(r[1][c]==null?"":f3(r[1][c]))+'</td>';h+='</tr>'});
 Tb.innerHTML=h;
 Tb.querySelectorAll("select.sd").forEach(function(e){var r=+e.dataset.s,b=bl[r];e.value=b.eff.d;e.onchange=function(){var ov=T.sum.rows[r];ov.d=this.value;ov.m=Tb.querySelector('select.sm[data-s="'+r+'"]').value;save();build()}});
 Tb.querySelectorAll("select.sm").forEach(function(e){var r=+e.dataset.s,b=bl[r];e.value=b.eff.m;e.onchange=function(){var ov=T.sum.rows[r];ov.m=this.value;ov.d=Tb.querySelector('select.sd[data-s="'+r+'"]').value;save();build()}});
@@ -380,7 +381,8 @@ for(var c=0;c<n;c++){var s=sv(b.res[c]),v=ri===0?s.g:ri===1?s.x:s.j;box(xi+c*cw,
 if(ri===0&&s.g!=null)tg[c]=r3((tg[c]||0)+s.g);if(ri===1&&s.x!=null)tx[c]=r3((tx[c]||0)+s.x);if(ri===2&&s.j!=null)tj[c]=r3((tj[c]||0)+s.j)}});
 y+=rh*3});
 for(var c3=0;c3<n;c3++)tj[c3]=tg[c3]==null?null:r3(tg[c3]-(tx[c3]||0));
-[["মোট গ্রহণ =",tg,true],["মোট খরচ =",tx,false],["মোট মজুদ =",tj,true]].forEach(function(r){box(pad,y,xi-pad,rh,PL);txt(r[0],xi-10,y+rh/2,xi-pad,r[2]?RED:BLK,true,14,"right");for(var c=0;c<n;c++){box(xi+c*cw,y,cw,rh,PL);if(r[1][c]!=null)txt(f3(r[1][c]),xi+c*cw+cw/2,y+rh/2,cw,r[2]?RED:BLK,true,14)}y+=rh});
+var tj2=tg.map(function(g,c){return g==null?null:r3(g-(tx[c]||0))});
+[["মোট গ্রহণ =",tg,true],["মোট খরচ =",tx,false],["মোট মজুদ =",tj2,true]].forEach(function(r){box(pad,y,xi-pad,rh,PL);txt(r[0],xi-10,y+rh/2,xi-pad,r[2]?RED:BLK,true,14,"right");for(var c=0;c<n;c++){box(xi+c*cw,y,cw,rh,PL);if(r[1][c]!=null)txt(f3(r[1][c]),xi+c*cw+cw/2,y+rh/2,cw,r[2]?RED:BLK,true,14)}y+=rh});
 x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
 return C.cv}
 function allCanvases(){var T=TT(),out=[];for(var p=0;p<NP;p++)if(pageDates(T,p).active&&(p===0||used(T,p)))out.push(drawWeek(p));out.push(drawSum());return out}

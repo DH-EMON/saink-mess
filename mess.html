@@ -14,7 +14,7 @@ body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-
 h1{font-size:22px;margin:2px 4px 8px;text-align:center}
 .back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
 .sub{color:var(--mu);font-size:12px;text-align:center;margin-bottom:10px}
-.foot{text-align:center;color:var(--mu);font-size:12px;margin-top:22px}
+.foot{text-align:right;margin-right:-4px;color:var(--mu);font-size:12px;margin-top:22px}
 .ttl{display:flex;gap:8px;justify-content:center;align-items:center;margin:2px 0 10px;font-weight:700}
 .ttl select{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 6px}
 .ttl input{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 10px;width:170px;text-align:center}
@@ -163,7 +163,7 @@ cells.forEach(function(t,k){box(xx,y,cwid[k],rh,k==4?PL:null);x.fillStyle=k==3||
 x.textAlign="center";y+=rh;
 });
 if(n>0){var tx=pad+cwid[0]+cwid[1]+cwid[2]+cwid[3]+cwid[4];box(tx,ys,cwid[5],n*rh,PL);x.fillStyle="#c0201a";x.textAlign="center";fit(f(tot()),cwid[5]-12,20,true);x.fillText(f(tot()),tx+cwid[5]/2,ys+n*rh/2)}
-x.fillStyle="#555";x.font="12px "+FF;x.textAlign="center";x.fillText("Create by Ocu Emon",W/2,H-pad-2);
+x.fillStyle="#555";x.font="12px "+FF;x.textAlign="right";x.font="11px "+FF;x.fillText("Create by Ocu Emon",W-6,H-5);
 var b64=cv.toDataURL("image/jpeg",0.92).split(",")[1];PVURL="data:image/jpeg;base64,"+b64;
 var bin=atob(b64),jpg=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)jpg[q]=bin.charCodeAt(q);
 var pw=Math.round(W*0.75),ph=Math.round(H*0.75),enc=new TextEncoder(),parts=[],off=[],len=0;

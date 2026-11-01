@@ -16,7 +16,7 @@ h1{font-size:21px;margin:6px 4px 2px;text-align:center}
 .org{text-align:center;font-weight:700;font-size:16px;margin:0 0 10px}
 .back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
 .sub{color:var(--mu);font-size:12px;text-align:center;margin:0 0 10px}
-.foot{text-align:center;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
+.foot{text-align:right;margin-right:-4px;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
 .ctl{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 6px;font-weight:700}
 .ctl select{font:inherit;font-size:17px;font-weight:700;color:var(--tx);background:var(--card);border:2px solid var(--ac);border-radius:10px;padding:7px 10px}
 .pgbar{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 4px;font-weight:700}
@@ -242,7 +242,7 @@ box(xs[2],y,cw[2],rh,null);if(j!=null){any=true;tj+=j;txt(toBn(j),xs[2]+cw[2]/2,
 nm.forEach(function(c,k){box(xi+k*iw,y,iw,rh,null);if(j!=null){var v=r3((B[c]||0)*j);tot[k]=r3(tot[k]+v);txt(f3(v),xi+k*iw+iw/2,y+rh/2,iw,BLK,false,14)}});y+=rh}
 box(xs[0],y,cw[0],rh,PL);txt("মোট",xs[0]+cw[0]/2,y+rh/2,cw[0],BLK,true,13);box(xs[1],y,cw[1],rh,PL);box(xs[2],y,cw[2],rh,PL);if(any)txt(toBn(tj),xs[2]+cw[2]/2,y+rh/2,cw[2],RED,true,14);
 nm.forEach(function(c,k){box(xi+k*iw,y,iw,rh,PL);if(any)txt(f3(tot[k]),xi+k*iw+iw/2,y+rh/2,iw,RED,true,14)});
-x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="right";x.font="11px "+FF;x.fillText("Create By Ocu Emon",W-6,H-5);
 return C.cv}
 function pdfFrom(cvs){
 var enc=new TextEncoder(),parts=[],off=[],len=0,N=cvs.length;

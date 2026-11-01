@@ -17,7 +17,7 @@ h1{font-size:21px;margin:6px 4px 2px;text-align:center}
 .org{text-align:center;font-weight:700;font-size:16px;margin:0 0 10px}
 .back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
 .sub{color:var(--mu);font-size:12px;text-align:center;margin:0 0 10px}
-.foot{text-align:center;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
+.foot{text-align:right;margin-right:-4px;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
 .ctl{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 6px;font-weight:700}
 .ctl select{font:inherit;font-size:17px;font-weight:700;color:var(--tx);background:var(--card);border:2px solid var(--ac);border-radius:10px;padding:7px 10px}
 .pgbar{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 4px;font-weight:700}
@@ -232,7 +232,7 @@ x.strokeStyle="#111";x.beginPath();x.moveTo(xs[7]+14,y+25);x.lineTo(xs[7]+cw[7]-
 x.fillStyle=prev<0?"#b42318":"#111";x.font="bold 16px "+FF;x.fillText(fq(prev),xs[7]+cw[7]/2,y+37)}
 y+=rh;
 });
-x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="right";x.font="11px "+FF;x.fillText("Create By Ocu Emon",W-6,H-5);
 var b64=cv.toDataURL("image/jpeg",0.92).split(",")[1];PVURL="data:image/jpeg;base64,"+b64;
 var bin=atob(b64),jpg=new Uint8Array(bin.length);for(var q=0;q<bin.length;q++)jpg[q]=bin.charCodeAt(q);
 var pw=Math.round(W*0.75),ph=Math.round(H*0.75),enc=new TextEncoder(),parts=[],off=[],len=0;

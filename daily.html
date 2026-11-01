@@ -16,7 +16,7 @@ h1{font-size:21px;margin:6px 4px 2px;text-align:center}
 .org{text-align:center;font-weight:700;font-size:16px;margin:0 0 10px}
 .back{display:inline-block;color:var(--ac);font-weight:700;text-decoration:none;padding:4px 6px;font-size:15px}
 .sub{color:var(--mu);font-size:12px;text-align:center;margin:0 0 10px}
-.foot{text-align:center;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
+.foot{text-align:right;margin-right:-4px;color:var(--mu);font-size:13px;margin-top:20px;font-weight:600}
 .ctl{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 6px;font-weight:700}
 .ctl select{font:inherit;font-size:17px;font-weight:700;color:var(--tx);background:var(--card);border:2px solid var(--ac);border-radius:10px;padding:7px 10px}
 .pgbar{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;margin:4px 0 4px;font-weight:700}
@@ -367,7 +367,7 @@ y+=rh*4});
 if(!nextCont){box(pad,y,c1,rh,PL);txt(pd.last>=0?dtxt(pd.days[pd.last]):"",pad+c1/2,y+rh/2,c1,BLK,false,13);
 box(pad+c1,y,c2,rh,PL);txt("JQ স্টোর",pad+c1+c2/2,y+rh/2,c2,BLK,true,13);
 rowCells(y,"জমা",true,res.map(function(c){return c.j}),PL);y+=rh}
-x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="right";x.font="11px "+FF;x.fillText("Create By Ocu Emon",W-6,H-5);
 return C.cv}
 function drawSum(){
 var T=TT(),n=T.cols.length,bl=sumBlocks(T).filter(function(b){return b.ok}),pad=16,cs=[96,76,76,54,70,70],cw=94,rh=30,hh=52,xi=pad+cs.reduce(function(a,b){return a+b},0),W=xi+n*cw+pad;
@@ -390,7 +390,7 @@ y+=rh*3});
 for(var c3=0;c3<n;c3++)tj[c3]=tg[c3]==null?null:r3(tg[c3]-(tx[c3]||0));
 var tj2=tg.map(function(g,c){return g==null?null:r3(g-(tx[c]||0))});
 [["মোট গ্রহণ =",tg,true],["মোট খরচ =",tx,false],["মোট মজুদ =",tj2,true]].forEach(function(r){box(pad,y,xi-pad,rh,PL);txt(r[0],xi-10,y+rh/2,xi-pad,r[2]?RED:BLK,true,14,"right");for(var c=0;c<n;c++){box(xi+c*cw,y,cw,rh,PL);if(r[1][c]!=null)txt(f3(r[1][c]),xi+c*cw+cw/2,y+rh/2,cw,r[2]?RED:BLK,true,14)}y+=rh});
-x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="center";x.fillText("Create By Ocu Emon",W/2,H-pad-6);
+x.fillStyle="#333";x.font="bold 14px "+FF;x.textAlign="right";x.font="11px "+FF;x.fillText("Create By Ocu Emon",W-6,H-5);
 return C.cv}
 function allCanvases(){var T=TT(),out=[];for(var p=0;p<NP;p++)if(pageDates(T,p).active&&(p===0||used(T,p)))out.push(drawWeek(p));out.push(drawSum());return out}
 function pdfFrom(cvs){
